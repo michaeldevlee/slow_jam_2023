@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://test_environment_MIKE/Player_test.tscn" type="PackedScene" id=1]
+[ext_resource path="res://test_environment_MIKE/obstacle.tscn" type="PackedScene" id=2]
+
+[node name="test_scene" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+margin_right = 360.0
+margin_bottom = 240.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8, 200 )
+
+[node name="obstacle_test" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8, 152 )
