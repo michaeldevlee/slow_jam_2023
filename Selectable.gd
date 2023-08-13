@@ -1,8 +1,14 @@
-extends Node
-
-onready var parent = get_parent()
+extends Area2D
+class_name Selectable
 
 func _ready():
-	if parent and parent is CollisionObject2D and get_parent().input_pickable:
-		parent.connect("input_event", parent, "test")
-		print(parent)
+	connect("input_event", self, "initiate_event")
+
+func initiate_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.is_pressed() and get_parent():
+			interact()
+
+func interact():
+	pass
+

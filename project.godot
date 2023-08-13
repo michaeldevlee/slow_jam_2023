@@ -8,11 +8,31 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Selectable",
+"class": "Collectible",
+"language": "GDScript",
+"path": "res://Interact System/Scavenge_System/Collectibles/base_collectible.gd"
+}, {
+"base": "Area2D",
+"class": "Selectable",
+"language": "GDScript",
+"path": "res://Selectable.gd"
+} ]
+_global_script_class_icons={
+"Collectible": "",
+"Selectable": ""
+}
+
 [application]
 
 config/name="Food Court Madness"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+InteractEventBus="*res://Interact System/InteractEventBus.tscn"
 
 [display]
 
