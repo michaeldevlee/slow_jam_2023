@@ -1,10 +1,12 @@
 extends Node2D
 
 onready var timer = get_node("Timer")
+onready var sceneManager = get_node("SceneManager")
 
 func _ready():
-	timer.connect("timeout", self, "test")
+	timer.connect("timeout", self, "enter_next_mode")
 
 
-func test():
-	print('runngin')
+func enter_next_mode():
+	sceneManager.next()
+	print('enter next mode')

@@ -10,5 +10,5 @@ func initiate_event(viewport, event, shape_idx):
 			interact()
 
 func interact():
-	pass
+	print('jhello')
 

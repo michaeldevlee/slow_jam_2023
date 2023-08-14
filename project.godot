@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Interact System/Scavenge_System/Collectibles/base_collectible.gd"
 }, {
+"base": "Node2D",
+"class": "CookingSystem",
+"language": "GDScript",
+"path": "res://Game Systems/CookingSystem.gd"
+}, {
+"base": "Node2D",
+"class": "ScavengeSystem",
+"language": "GDScript",
+"path": "res://Game Systems/ScavengeSystem.gd"
+}, {
 "base": "Area2D",
 "class": "Selectable",
 "language": "GDScript",
@@ -21,6 +31,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Collectible": "",
+"CookingSystem": "",
+"ScavengeSystem": "",
 "Selectable": ""
 }
 
