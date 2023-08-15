@@ -1,9 +1,12 @@
 extends Node
 
-var inventory = {
-	"SCRAPHEAD NOODLE" : 0
-}
+export var inventory : Dictionary
 
 func add(ingredient):
-	if inventory.has("SCRAPHEAD NOODLE"):
-		print('have it')
+	if inventory.has(ingredient):
+		inventory.ingredient -= 1;
+
+func remove(ingredient):
+		if inventory.has(ingredient):
+			inventory.ingredient -= 1;
+			

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Game Systems/CookingSystem.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -33,6 +33,33 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 160, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "close_nav_bar"
+tracks/0/type = "value"
+tracks/0/path = NodePath("BlockOut/ColorRect2/Navbar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BlockOut/ColorRect2/Navbar:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, 0 ), Vector2( 160, 0 ) ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -142,6 +169,7 @@ script = ExtResource( 5 )
 ingredient_icons_path = NodePath("PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Ingredient Icons")
 order_title_path = NodePath("PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Order Title")
 recipe_icon_path = NodePath("PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Icon")
+_start_button = NodePath("PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Start Button/Start Button")
 _exit_button = NodePath("PopUpBackground/MarginContainer/Outer/Exit Button")
 
 [node name="PopUpBackground" type="TextureRect" parent="UI"]
@@ -254,4 +282,5 @@ custom_constants/margin_bottom = 10
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
 anims/RESET = SubResource( 2 )
+anims/close_nav_bar = SubResource( 3 )
 anims/show_nav_bar = SubResource( 1 )

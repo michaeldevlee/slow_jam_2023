@@ -27,6 +27,6 @@ func open_navbar():
 	navbar.init_navbar()
 	
 func close_navbar():
-	anim_plyer.play_backwards("show_nav_bar")
+	anim_plyer.play("close_nav_bar")
 	open_ui_button.visible = true
 	
