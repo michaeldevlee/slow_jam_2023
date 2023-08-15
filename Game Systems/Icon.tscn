@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Game Systems/Icon.gd" type="Script" id=2]
+
+[node name="Icon" type="TextureRect"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_scale = Vector2( 0.35, 0.35 )
+mouse_filter = 2
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+type = "QUANTIFIER"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 68.5714
+margin_top = 22.8572
+margin_right = 102.571
+margin_bottom = 47.8572
+text = "x1"
+align = 1
+valign = 1

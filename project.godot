@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Game Systems/CookingSystem.gd"
 }, {
+"base": "TextureRect",
+"class": "Recipe",
+"language": "GDScript",
+"path": "res://Game Systems/Recipe.gd"
+}, {
+"base": "Resource",
+"class": "Recipe_Order",
+"language": "GDScript",
+"path": "res://Interact System/Cooking_System/Recipes/base_recipe_res.gd"
+}, {
 "base": "Node2D",
 "class": "ScavengeSystem",
 "language": "GDScript",
@@ -32,6 +42,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Collectible": "",
 "CookingSystem": "",
+"Recipe": "",
+"Recipe_Order": "",
 "ScavengeSystem": "",
 "Selectable": ""
 }
@@ -46,6 +58,7 @@ config/icon="res://icon.png"
 
 InteractEventBus="*res://Interact System/InteractEventBus.tscn"
 Inventory="*res://Inventory System/Inventory.gd"
+GameState="*res://Game State System/GameState.gd"
 
 [display]
 
