@@ -1,13 +1,14 @@
 extends Selectable
 class_name Collectible
 
-export(String, "Scraphead Noodle", "Rusty Meatballs", "Slimy Seaweed Wrap", "Quantum Batter", "Rotten Meteor Marinara", "Alien Eggplant") var ingredient
+export var ingredient : Resource
+onready var sprite = get_node("Sprite")
 
 func interact():
-	if !Inventory.inventory.has(ingredient):
-		Inventory.inventory[ingredient] = 0
+	if !Inventory.inventory.has(ingredient.name):
+		Inventory.inventory[ingredient.name] = 0
 	
-	Inventory.inventory[ingredient] += 1
+	Inventory.inventory[ingredient.name] += 1
 	queue_free()
 		
 
