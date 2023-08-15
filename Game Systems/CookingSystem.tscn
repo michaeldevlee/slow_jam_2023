@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Game Systems/CookingSystem.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Game Systems/OrderView.gd" type="Script" id=5]
 [ext_resource path="res://Game Systems/Navbar.gd" type="Script" id=6]
 [ext_resource path="res://Assets/UI/Button_Close.png" type="Texture" id=7]
+[ext_resource path="res://Game Systems/MiniGameScreen.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -166,11 +167,13 @@ visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 script = ExtResource( 5 )
-ingredient_icons_path = NodePath("PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Ingredient Icons")
-order_title_path = NodePath("PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Order Title")
-recipe_icon_path = NodePath("PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Icon")
-_start_button = NodePath("PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Start Button/Start Button")
-_exit_button = NodePath("PopUpBackground/MarginContainer/Outer/Exit Button")
+mini_game_screen_path = NodePath("PopUpBackground/MiniGame")
+recipe_screen_path = NodePath("PopUpBackground/RecipeManagement")
+ingredient_icons_path = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Ingredient Icons")
+order_title_path = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Order Title")
+recipe_icon_path = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Icon")
+_start_button = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Start Button/Start Button")
+_exit_button = NodePath("PopUpBackground/RecipeManagement/MarginContainer/Outer/Exit Button")
 
 [node name="PopUpBackground" type="TextureRect" parent="UI"]
 anchor_left = 0.5
@@ -184,7 +187,12 @@ margin_bottom = 72.0
 mouse_filter = 2
 texture = ExtResource( 3 )
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/PopUpBackground"]
+[node name="RecipeManagement" type="Control" parent="UI/PopUpBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PopUpBackground/RecipeManagement"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -192,39 +200,40 @@ custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 
-[node name="Outer" type="HBoxContainer" parent="UI/PopUpBackground/MarginContainer"]
+[node name="Outer" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 235.0
 margin_bottom = 144.0
+mouse_filter = 2
 alignment = 2
 
-[node name="Exit Button" type="TextureButton" parent="UI/PopUpBackground/MarginContainer/Outer"]
+[node name="Exit Button" type="TextureButton" parent="UI/PopUpBackground/RecipeManagement/MarginContainer/Outer"]
 margin_left = 214.0
 margin_right = 230.0
 margin_bottom = 139.0
 texture_normal = ExtResource( 7 )
 
-[node name="RecipeSelect" type="HBoxContainer" parent="UI/PopUpBackground"]
+[node name="RecipeSelect" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 235.0
 margin_bottom = 134.0
 mouse_filter = 2
 
-[node name="RecipeSelect" type="MarginContainer" parent="UI/PopUpBackground/RecipeSelect"]
+[node name="RecipeSelect" type="MarginContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect"]
 margin_right = 230.0
 margin_bottom = 129.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
-[node name="Inner" type="HBoxContainer" parent="UI/PopUpBackground/RecipeSelect/RecipeSelect"]
+[node name="Inner" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect"]
 margin_right = 230.0
 margin_bottom = 129.0
 mouse_filter = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/PopUpBackground/RecipeSelect/RecipeSelect/Inner"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner"]
 margin_right = 230.0
 margin_bottom = 106.0
 mouse_filter = 2
@@ -232,7 +241,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 alignment = 1
 
-[node name="Recipe Icon" type="TextureRect" parent="UI/PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer"]
+[node name="Recipe Icon" type="TextureRect" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer"]
 margin_left = 83.0
 margin_right = 147.0
 margin_bottom = 64.0
@@ -240,7 +249,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = ExtResource( 2 )
 
-[node name="Order Title" type="Label" parent="UI/PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer"]
+[node name="Order Title" type="Label" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer"]
 margin_top = 68.0
 margin_right = 230.0
 margin_bottom = 82.0
@@ -249,20 +258,20 @@ align = 1
 valign = 1
 autowrap = true
 
-[node name="Ingredient Icons" type="HBoxContainer" parent="UI/PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer"]
+[node name="Ingredient Icons" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer"]
 margin_top = 86.0
 margin_right = 230.0
 margin_bottom = 86.0
 alignment = 1
 
-[node name="Start Button" type="HBoxContainer" parent="UI/PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer"]
+[node name="Start Button" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer"]
 margin_top = 90.0
 margin_right = 230.0
 margin_bottom = 106.0
 custom_constants/separation = -1
 alignment = 1
 
-[node name="Start Button" type="TextureButton" parent="UI/PopUpBackground/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Start Button"]
+[node name="Start Button" type="TextureButton" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Start Button"]
 margin_left = 91.0
 margin_right = 139.0
 margin_bottom = 16.0
@@ -270,14 +279,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture_normal = ExtResource( 4 )
 
-[node name="MiniGame" type="MarginContainer" parent="UI/PopUpBackground"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-custom_constants/margin_right = 5
-custom_constants/margin_top = 0
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 10
+[node name="MiniGame" parent="UI/PopUpBackground" instance=ExtResource( 8 )]
+visible = false
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"

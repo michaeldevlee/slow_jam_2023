@@ -25,6 +25,16 @@ _global_script_classes=[ {
 "path": "res://Interact System/Scavenge_System/Collectibles/ingredient_resource.gd"
 }, {
 "base": "TextureRect",
+"class": "MiniGame",
+"language": "GDScript",
+"path": "res://Game Systems/MiniGame.gd"
+}, {
+"base": "Control",
+"class": "MiniGameScreen",
+"language": "GDScript",
+"path": "res://Game Systems/MiniGameScreen.gd"
+}, {
+"base": "TextureRect",
 "class": "Recipe",
 "language": "GDScript",
 "path": "res://Game Systems/Recipe.gd"
@@ -48,6 +58,8 @@ _global_script_class_icons={
 "Collectible": "",
 "CookingSystem": "",
 "Ingredient": "",
+"MiniGame": "",
+"MiniGameScreen": "",
 "Recipe": "",
 "Recipe_Order": "",
 "ScavengeSystem": "",
