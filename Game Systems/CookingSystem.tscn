@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Game Systems/CookingSystem.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -7,7 +7,10 @@
 [ext_resource path="res://Game Systems/OrderView.gd" type="Script" id=5]
 [ext_resource path="res://Game Systems/Navbar.gd" type="Script" id=6]
 [ext_resource path="res://Assets/UI/Button_Close.png" type="Texture" id=7]
-[ext_resource path="res://Game Systems/MiniGameScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Game Systems/MiniGameScreen.gd" type="Script" id=9]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -167,7 +170,7 @@ visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 script = ExtResource( 5 )
-mini_game_screen_path = NodePath("PopUpBackground/MiniGame")
+mini_game_screen_path = NodePath("PopUpBackground/MiniGameScreen")
 recipe_screen_path = NodePath("PopUpBackground/RecipeManagement")
 ingredient_icons_path = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Ingredient Icons")
 order_title_path = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Order Title")
@@ -188,6 +191,7 @@ mouse_filter = 2
 texture = ExtResource( 3 )
 
 [node name="RecipeManagement" type="Control" parent="UI/PopUpBackground"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -279,10 +283,23 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture_normal = ExtResource( 4 )
 
-[node name="MiniGame" parent="UI/PopUpBackground" instance=ExtResource( 8 )]
+[node name="MiniGameScreen" type="Control" parent="UI/PopUpBackground"]
 visible = false
-margin_right = 0.0
-margin_bottom = 0.0
+margin_right = 240.0
+margin_bottom = 144.0
+mouse_filter = 2
+script = ExtResource( 9 )
+
+[node name="MiniGameContainer" type="HBoxContainer" parent="UI/PopUpBackground/MiniGameScreen"]
+margin_left = 30.0
+margin_top = 20.0
+margin_right = 210.0
+margin_bottom = 116.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/PopUpBackground/MiniGameScreen"]
+root_node = NodePath("")
+anims/RESET = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Scraphead Noodle/Scraphead Noodles.tres" type="Resource" id=1]
 [ext_resource path="res://Interact System/Cooking_System/Recipes/base_recipe_res.gd" type="Script" id=2]
 [ext_resource path="res://Assets/UI/Icon_Recipe_JunkyardStew.png" type="Texture" id=3]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Rusty Meatballs/Rusty Meatballs.tres" type="Resource" id=4]
+[ext_resource path="res://Game Systems/Cooking Mini Games/Test.tscn" type="PackedScene" id=5]
 
 [resource]
 script = ExtResource( 2 )
@@ -12,3 +13,7 @@ upgrade_combo = {
 }
 name = "Junkyard Jamboree Stew"
 icon = ExtResource( 3 )
+mini_game = ExtResource( 5 )
+basic_reward = 1
+med_reward = 2
+big_reward = 3
