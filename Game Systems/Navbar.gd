@@ -32,9 +32,6 @@ func cleanup_order(s):
 		pass
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_down"):
-		if $Recipe:
-			$Recipe.queue_free()
 	if Input.is_action_just_pressed("ui_up"):
 		var i_recipe = recipe.instance()
 		navbar_list.add_child(i_recipe)

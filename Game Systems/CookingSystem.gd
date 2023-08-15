@@ -34,6 +34,7 @@ func close_navbar():
 func process_mini_game(finished_recipe : Recipe):
 	var recipe_resource = finished_recipe.order
 	modal.exit()
-	Inventory.money += recipe_resource.basic_reward
+	Inventory.money += recipe_resource.reward
+	print(Inventory.money )
 	finished_recipe.queue_free()
 	

@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Game Systems/CookingSystem.gd"
 }, {
+"base": "Node2D",
+"class": "Enhancer",
+"language": "GDScript",
+"path": "res://Interact System/Cooking_System/Enhancers/Enhancer.gd"
+}, {
+"base": "Resource",
+"class": "Enhancer_Resource",
+"language": "GDScript",
+"path": "res://Interact System/Cooking_System/Enhancers/enhancer_res.gd"
+}, {
 "base": "Resource",
 "class": "Ingredient",
 "language": "GDScript",
@@ -57,6 +67,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Collectible": "",
 "CookingSystem": "",
+"Enhancer": "",
+"Enhancer_Resource": "",
 "Ingredient": "",
 "MiniGame": "",
 "MiniGameScreen": "",

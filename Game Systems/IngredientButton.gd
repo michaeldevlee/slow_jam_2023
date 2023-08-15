@@ -8,11 +8,12 @@ func _ready():
 	connect("button_up", self, "increase")
 
 func increase():
-	var player_inv = Inventory.inventory[ingredient]
-	
-	if player_inv > modal_inv:
-		modal_inv += 1
-		quantity.set_text(str(modal_inv))
+	if Inventory.inventory.has(ingredient):
+		var player_inv = Inventory.inventory[ingredient]
+		
+		if player_inv > modal_inv:
+			modal_inv += 1
+			quantity.set_text(str(modal_inv))
 	
 func decrease():
 	print('decreasing')

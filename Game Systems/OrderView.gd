@@ -55,13 +55,19 @@ func load_order(recipe : Recipe):
 		
 		qty_button.ingredient = ingredient.name
 		ingredient_icon.add_child(qty_button)
+	
+	var enhancer = quantity_button.instance()
+	enhancer.set_modulate(Color(1,1,1, 0.4))
+	enhancer.get_node("Label").queue_free()
+	ingredient_icon.add_child(enhancer)
 
 		
 	
 func initiate_mini_game_mode():
 	if can_create_dish:
 		for icon in ingredient_icon.get_children():
-			Inventory.inventory[icon.ingredient] -= icon.modal_inv
+			if Inventory.inventory.has(icon.ingredient):
+				Inventory.inventory[icon.ingredient] -= icon.modal_inv
 		
 		if mini_game_screen is MiniGameScreen:
 			mini_game_screen.visible = true

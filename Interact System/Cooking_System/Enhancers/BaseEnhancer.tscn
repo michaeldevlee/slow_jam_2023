@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Interact System/Cooking_System/Enhancers/Enhancer.gd" type="Script" id=1]
+
+[node name="Enhancer" type="TextureRect"]
+script = ExtResource( 1 )
