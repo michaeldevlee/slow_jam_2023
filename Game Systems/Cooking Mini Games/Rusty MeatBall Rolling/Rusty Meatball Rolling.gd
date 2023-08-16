@@ -7,6 +7,7 @@ var basic_size_req = 1
 var med_size_req = 0.5
 var high_size_req = 0.2
 
+var enhancer
 # 1 = basic, 2 = med, 3 = high
 var score_arr = []
 
@@ -16,8 +17,7 @@ func _ready():
 	for button in get_children():
 		if button is TextureButton:
 			button.connect("button_up", self, "shrink", [button])
-
-	
+	enhancer = recipe.order.enhancers[0]
 
 func addScore(score : float):
 	if score < high_size_req:
@@ -53,8 +53,10 @@ func end_mini_game():
 		if button is TextureButton:
 			addScore(button.rect_scale.x)
 			button.disabled = true
-	
+			
 	checkScores(score_arr)
+	recipe.order.enhancers.clear()
+	enhancer = null
 	notify_mini_game_ended()
 
 func shrink(button):

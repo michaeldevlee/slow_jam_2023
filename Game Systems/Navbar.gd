@@ -1,4 +1,4 @@
-extends ColorRect
+extends TextureRect
 
 var recipe = preload("res://Interact System/Cooking_System/Recipes/Junkyard Jamboree Stew/Junkyard Jamboree Stew.tscn")
 var navbar_list
@@ -9,7 +9,7 @@ onready var exit_button = get_node("Slide Out Button2")
 signal navbar_exited
 
 func _ready():
-	exit_button.connect("button_up", self, "cleanup_navbar")
+	exit_button.connect("button_up", self, "close_navbar")
 	
 	if recipe_list:
 		navbar_list = get_node(recipe_list)
@@ -19,9 +19,13 @@ func _ready():
 func init_navbar():
 	exit_button.visible = true
 
-func cleanup_navbar():
+func close_navbar():
 	exit_button.visible = false
 	emit_signal("navbar_exited")
+
+func cleanup_navbar():
+	for recipe in navbar_list.get_children():
+		recipe.queue_free()
 
 func load_order(s):
 	if s is Recipe:

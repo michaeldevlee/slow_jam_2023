@@ -7,6 +7,7 @@ export var enhancers = []
 
 export var name : String
 export var icon : Texture
+export var mini_icon : Texture
 
 export var mini_game : PackedScene
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Game Systems/CookingSystem.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -7,7 +7,23 @@
 [ext_resource path="res://Game Systems/OrderView.gd" type="Script" id=5]
 [ext_resource path="res://Game Systems/Navbar.gd" type="Script" id=6]
 [ext_resource path="res://Assets/UI/Button_Close.png" type="Texture" id=7]
+[ext_resource path="res://Assets/UI/Sidebar_Orders.png" type="Texture" id=8]
 [ext_resource path="res://Game Systems/MiniGameScreen.gd" type="Script" id=9]
+[ext_resource path="res://Assets/UI/Button_Close_10x10.png" type="Texture" id=10]
+[ext_resource path="res://Interact System/Cooking_System/Enhancers/Enhancer UI.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=12]
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 12 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 7 )
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 12 )
+
+[sub_resource type="Theme" id=9]
+default_font = SubResource( 8 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -114,12 +130,13 @@ rect_pivot_offset = Vector2( 96, 88 )
 mouse_filter = 2
 color = Color( 0.333333, 0, 0.917647, 1 )
 
-[node name="Navbar" type="ColorRect" parent="BlockOut/ColorRect2"]
+[node name="Navbar" type="TextureRect" parent="BlockOut/ColorRect2"]
 margin_left = 160.0
 margin_right = 256.0
 margin_bottom = 180.0
 mouse_filter = 2
-color = Color( 0.172549, 0.0235294, 0.341176, 1 )
+theme = SubResource( 6 )
+texture = ExtResource( 8 )
 script = ExtResource( 6 )
 recipe_list = NodePath("MarginContainer/HBoxContainer/VBoxContainer")
 
@@ -152,10 +169,9 @@ text = "Orders"
 [node name="Slide Out Button2" type="TextureButton" parent="BlockOut/ColorRect2/Navbar"]
 margin_left = 8.0
 margin_top = 160.0
-margin_right = 72.0
-margin_bottom = 224.0
-rect_scale = Vector2( 0.25, 0.25 )
-texture_normal = ExtResource( 2 )
+margin_right = 18.0
+margin_bottom = 170.0
+texture_normal = ExtResource( 10 )
 
 [node name="Slide Out Button" type="TextureButton" parent="BlockOut/ColorRect2"]
 margin_left = 136.0
@@ -166,8 +182,10 @@ rect_scale = Vector2( 0.25, 0.25 )
 texture_normal = ExtResource( 2 )
 
 [node name="UI" type="Control" parent="."]
+visible = false
 margin_right = 320.0
 margin_bottom = 180.0
+theme = SubResource( 9 )
 script = ExtResource( 5 )
 mini_game_screen_path = NodePath("PopUpBackground/MiniGameScreen")
 recipe_screen_path = NodePath("PopUpBackground/RecipeManagement")
@@ -244,7 +262,7 @@ size_flags_horizontal = 3
 
 [node name="Recipe Container" type="VBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer"]
 margin_right = 230.0
-margin_bottom = 86.0
+margin_bottom = 88.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -262,15 +280,16 @@ texture = ExtResource( 2 )
 [node name="Order Title" type="Label" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container"]
 margin_top = 68.0
 margin_right = 230.0
-margin_bottom = 82.0
+margin_bottom = 84.0
+custom_colors/font_color = Color( 0.286275, 0.172549, 0.282353, 1 )
 text = "Recipe name"
 align = 1
 valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container"]
-margin_top = 86.0
+margin_top = 88.0
 margin_right = 230.0
-margin_bottom = 86.0
+margin_bottom = 88.0
 alignment = 1
 
 [node name="Ingredient Icons" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container/HBoxContainer"]
@@ -283,10 +302,15 @@ margin_left = 117.0
 margin_right = 117.0
 alignment = 1
 
+[node name="Enhancer UI" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container/HBoxContainer/Enhancer Icons" instance=ExtResource( 11 )]
+margin_left = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
+
 [node name="Start Button" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer"]
-margin_top = 90.0
+margin_top = 92.0
 margin_right = 230.0
-margin_bottom = 106.0
+margin_bottom = 108.0
 custom_constants/separation = -1
 alignment = 1
 

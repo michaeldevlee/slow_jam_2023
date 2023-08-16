@@ -7,6 +7,9 @@ onready var modal = get_node("UI")
 onready var open_ui_button = get_node("BlockOut/ColorRect2/Slide Out Button")
 onready var anim_plyer = get_node("AnimationPlayer")
 
+func init():
+	set_process_input(true)
+
 func _ready():
 	navbar.navbar_list.connect("child_entered_tree", self, "connect_recipe")
 	open_ui_button.connect("button_up", self, "open_navbar")
@@ -37,4 +40,11 @@ func process_mini_game(finished_recipe : Recipe):
 	Inventory.money += recipe_resource.reward
 	print(Inventory.money )
 	finished_recipe.queue_free()
+
+func cleanup():
+	close_navbar()
+	navbar.cleanup_navbar()
+	modal.exit()
+	set_process_input(false)
+	set_process(false)
 	

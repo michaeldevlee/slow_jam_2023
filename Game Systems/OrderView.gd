@@ -16,10 +16,10 @@ var enhancer_icon
 
 var curr_recipe
 
-var can_create_dish = true
+var can_create_dish = false
 
 var quantity_button = preload("res://Game Systems/IngredientButton.tscn")
-var enhancer_button = preload("res://Interact System/Cooking_System/Enhancers/BaseEnhancer.tscn")
+onready var enhancer_button = get_node("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container/HBoxContainer/Enhancer Icons/Enhancer UI")
 
 export var _start_button : NodePath
 export var _exit_button : NodePath
@@ -56,15 +56,10 @@ func load_order(recipe : Recipe):
 			qty_button.set_modulate(Color(0.2, 0.2, 0.5, 1))
 			qty_button.get_child(0).set_text("0")
 			can_create_dish = false
+			
 		
 		qty_button.ingredient = ingredient.name
 		ingredient_icon.add_child(qty_button)
-	
-	var enhancer = enhancer_button.instance()
-	enhancer.set_modulate(Color(1,1,1, 0.4))
-	enhancer_icon.add_child(enhancer)
-
-		
 	
 func initiate_mini_game_mode():
 	if can_create_dish:
@@ -75,15 +70,12 @@ func initiate_mini_game_mode():
 		if mini_game_screen is MiniGameScreen:
 			mini_game_screen.visible = true
 			recipe_screen.visible = false
-			print(curr_recipe.order)
+			curr_recipe.order.enhancers.append(enhancer_button.selected_enhancer)
 			mini_game_screen.start(curr_recipe)
 		
 func exit():
 	for icon in ingredient_icon.get_children():
 		icon.queue_free()
-	for icon in enhancer_icon.get_children():
-		icon.queue_free()
 	visible = false
 	can_create_dish = true
 	curr_recipe = null
-	print("exit")

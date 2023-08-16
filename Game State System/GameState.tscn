@@ -13,5 +13,5 @@
 script = ExtResource( 1 )
 available_ingredients = [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 2 ) ]
 unlocked_ingredients = [ ExtResource( 7 ) ]
-available_enhancers = [ ExtResource( 8 ), null, null ]
+available_enhancers = [ ExtResource( 8 ), ExtResource( 8 ), null ]
 unlocked_enhancers = [ ExtResource( 8 ), ExtResource( 8 ), null ]

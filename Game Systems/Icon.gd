@@ -1,6 +1,6 @@
 extends TextureRect
 
-onready var label = get_node("Label")
+onready var label = get_node("Control/Label")
 export (String, "RECIPE", "INGREDIENT", "QUANTIFIER") var type
 
 func _ready():
