@@ -11,6 +11,6 @@ upgrade_combo = {
 }
 enhancers = [  ]
 name = ""
-basic_reward = 0
-med_reward = 0
-big_reward = 0
+basic_reward = 1
+med_reward = 2
+big_reward = 3

@@ -171,7 +171,8 @@ margin_bottom = 180.0
 script = ExtResource( 5 )
 mini_game_screen_path = NodePath("PopUpBackground/MiniGameScreen")
 recipe_screen_path = NodePath("PopUpBackground/RecipeManagement")
-ingredient_icons_path = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container/Ingredient Icons")
+ingredient_icons_path = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container/HBoxContainer/Ingredient Icons")
+enhancer_icons_path = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container/HBoxContainer/Enhancer Icons")
 order_title_path = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container/Order Title")
 recipe_icon_path = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container/Recipe Icon")
 _start_button = NodePath("PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Start Button/Start Button")
@@ -266,10 +267,20 @@ text = "Recipe name"
 align = 1
 valign = 1
 
-[node name="Ingredient Icons" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container"]
 margin_top = 86.0
 margin_right = 230.0
 margin_bottom = 86.0
+alignment = 1
+
+[node name="Ingredient Icons" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container/HBoxContainer"]
+margin_left = 113.0
+margin_right = 113.0
+alignment = 1
+
+[node name="Enhancer Icons" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer/Recipe Container/HBoxContainer"]
+margin_left = 117.0
+margin_right = 117.0
 alignment = 1
 
 [node name="Start Button" type="HBoxContainer" parent="UI/PopUpBackground/RecipeManagement/RecipeSelect/RecipeSelect/Inner/VBoxContainer"]

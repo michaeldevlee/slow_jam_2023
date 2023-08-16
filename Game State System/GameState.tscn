@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game State System/GameState.gd" type="Script" id=1]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Alien Eggplant/Alien Eggplant.tres" type="Resource" id=2]
@@ -7,8 +7,11 @@
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Quantum Batter/Quantum Batter.tres" type="Resource" id=5]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Rotten Meteor Marinara/Rotten Meteor Marinara.tres" type="Resource" id=6]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Scraphead Noodle/Scraphead Noodles.tres" type="Resource" id=7]
+[ext_resource path="res://Interact System/Cooking_System/Enhancers/Rusty Relish.tres" type="Resource" id=8]
 
 [node name="GameState" type="Node2D"]
 script = ExtResource( 1 )
 available_ingredients = [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 2 ) ]
 unlocked_ingredients = [ ExtResource( 7 ) ]
+available_enhancers = [ ExtResource( 8 ), null, null ]
+unlocked_enhancers = [ ExtResource( 8 ), ExtResource( 8 ), null ]

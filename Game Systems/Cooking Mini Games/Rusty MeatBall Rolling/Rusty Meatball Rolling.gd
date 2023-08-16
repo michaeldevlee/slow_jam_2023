@@ -16,8 +16,7 @@ func _ready():
 	for button in get_children():
 		if button is TextureButton:
 			button.connect("button_up", self, "shrink", [button])
-	
-	
+
 	
 
 func addScore(score : float):

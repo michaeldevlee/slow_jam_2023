@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Game Systems/MiniGame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Game Systems/Cooking Mini Games/Rusty Meatball Rolling.gd" type="Script" id=3]
+[ext_resource path="res://Game Systems/Cooking Mini Games/Rusty MeatBall Rolling/Rusty Meatball Rolling.gd" type="Script" id=3]
 
 [node name="Rusty Meatball Squeeze" instance=ExtResource( 1 )]
 script = ExtResource( 3 )

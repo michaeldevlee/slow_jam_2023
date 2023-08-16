@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Game Systems/CookingSystem.gd"
 }, {
-"base": "Node2D",
+"base": "Control",
 "class": "Enhancer",
 "language": "GDScript",
 "path": "res://Interact System/Cooking_System/Enhancers/Enhancer.gd"
@@ -88,7 +88,7 @@ config/icon="res://icon.png"
 
 InteractEventBus="*res://Interact System/InteractEventBus.tscn"
 Inventory="*res://Inventory System/Inventory.tscn"
-GameState="*res://Game State System/GameState.gd"
+GameState="*res://Game State System/GameState.tscn"
 
 [display]
 

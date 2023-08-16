@@ -6,5 +6,6 @@
 script = ExtResource( 1 )
 inventory = {
 "Rusty Meatballs": 2,
+"Rusty Relish": 5,
 "Scraphead Noodle": 10
 }

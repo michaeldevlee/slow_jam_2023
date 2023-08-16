@@ -4,7 +4,7 @@
 [ext_resource path="res://Interact System/Cooking_System/Recipes/base_recipe_res.gd" type="Script" id=2]
 [ext_resource path="res://Assets/UI/Icon_Recipe_JunkyardStew.png" type="Texture" id=3]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Rusty Meatballs/Rusty Meatballs.tres" type="Resource" id=4]
-[ext_resource path="res://Game Systems/Cooking Mini Games/Rusty Meatball Rolling.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Game Systems/Cooking Mini Games/Rusty MeatBall Rolling/Rusty Meatball Rolling.tscn" type="PackedScene" id=5]
 
 [resource]
 resource_local_to_scene = true
@@ -12,7 +12,7 @@ script = ExtResource( 2 )
 required_ingredients = [ ExtResource( 1 ), ExtResource( 4 ) ]
 upgrade_combo = {
 }
-enhancers = [ null ]
+enhancers = [  ]
 name = "Junkyard Jamboree Stew"
 icon = ExtResource( 3 )
 mini_game = ExtResource( 5 )

@@ -3,6 +3,7 @@ extends Control
 export var mini_game_screen_path : NodePath
 export var recipe_screen_path : NodePath
 export var ingredient_icons_path : NodePath
+export var enhancer_icons_path : NodePath
 export var order_title_path : NodePath
 export var recipe_icon_path : NodePath
 
@@ -11,12 +12,14 @@ var order_title
 var recipe_icon
 var mini_game_screen
 var recipe_screen
+var enhancer_icon
 
 var curr_recipe
 
 var can_create_dish = true
 
 var quantity_button = preload("res://Game Systems/IngredientButton.tscn")
+var enhancer_button = preload("res://Interact System/Cooking_System/Enhancers/BaseEnhancer.tscn")
 
 export var _start_button : NodePath
 export var _exit_button : NodePath
@@ -30,12 +33,13 @@ func _ready():
 		start_button = get_node(_start_button)
 		start_button.connect("pressed", self, "initiate_mini_game_mode")
 		
-	if ingredient_icons_path and order_title_path and recipe_icon_path and mini_game_screen_path and recipe_screen_path:
+	if ingredient_icons_path and order_title_path and recipe_icon_path and mini_game_screen_path and recipe_screen_path and enhancer_icons_path:
 		ingredient_icon = get_node(ingredient_icons_path)
 		order_title = get_node(order_title_path)
 		recipe_icon = get_node(recipe_icon_path)
 		mini_game_screen = get_node(mini_game_screen_path)
 		recipe_screen = get_node(recipe_screen_path)
+		enhancer_icon = get_node(enhancer_icons_path)
 	
 	
 
@@ -56,10 +60,9 @@ func load_order(recipe : Recipe):
 		qty_button.ingredient = ingredient.name
 		ingredient_icon.add_child(qty_button)
 	
-	var enhancer = quantity_button.instance()
+	var enhancer = enhancer_button.instance()
 	enhancer.set_modulate(Color(1,1,1, 0.4))
-	enhancer.get_node("Label").queue_free()
-	ingredient_icon.add_child(enhancer)
+	enhancer_icon.add_child(enhancer)
 
 		
 	
@@ -77,7 +80,8 @@ func initiate_mini_game_mode():
 		
 func exit():
 	for icon in ingredient_icon.get_children():
-		print(icon)
+		icon.queue_free()
+	for icon in enhancer_icon.get_children():
 		icon.queue_free()
 	visible = false
 	can_create_dish = true
