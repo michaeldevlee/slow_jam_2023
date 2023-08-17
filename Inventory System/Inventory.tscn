@@ -5,7 +5,6 @@
 [node name="Inventory" type="Node2D"]
 script = ExtResource( 1 )
 inventory = {
-"Rusty Meatballs": 2,
-"Rusty Relish": 5,
-"Scraphead Noodle": 10
+Resource( "res://Interact System/Scavenge_System/Collectibles/Scraphead Noodle/Scraphead Noodles.tres" ): 5,
+Resource( "res://Interact System/Scavenge_System/Collectibles/Rusty Meatballs/Rusty Meatballs.tres" ): 2
 }

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://test_environment_MIKE/Test Assets/Inventory_UI_slot_test.png" type="Texture" id=1]
+[ext_resource path="res://Inventory System/Inventory Slot.gd" type="Script" id=2]
+
+[node name="Inventory Slot" type="TextureButton" groups=["Inventory_Slot"]]
+margin_right = 28.0
+margin_bottom = 28.0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 24.0
