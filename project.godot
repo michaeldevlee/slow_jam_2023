@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "ActionChange",
 "language": "GDScript",
-"path": "res://test_environment_MIKE/DirectionChange.gd"
+"path": "res://Game Systems/ActionChange.gd"
 }, {
 "base": "Selectable",
 "class": "Collectible",

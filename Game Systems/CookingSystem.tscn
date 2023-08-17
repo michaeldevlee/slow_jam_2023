@@ -12,7 +12,7 @@
 [ext_resource path="res://Assets/UI/Button_Close_10x10.png" type="Texture" id=10]
 [ext_resource path="res://Interact System/Cooking_System/Enhancers/Enhancer UI.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=12]
-[ext_resource path="res://Game Systems/DirectionChange.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Game Systems/ActionChange.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Game Systems/Customer.tscn" type="PackedScene" id=14]
 
 [sub_resource type="DynamicFont" id=7]
@@ -33,7 +33,7 @@ length = 0.001
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("BlockOut/ColorRect2/Navbar:modulate")
+tracks/0/path = NodePath("BlockOut/CustomerArea/Navbar:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -45,7 +45,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("BlockOut/ColorRect2/Navbar:rect_position")
+tracks/1/path = NodePath("BlockOut/CustomerArea/Navbar:rect_position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -60,7 +60,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "close_nav_bar"
 tracks/0/type = "value"
-tracks/0/path = NodePath("BlockOut/ColorRect2/Navbar:modulate")
+tracks/0/path = NodePath("BlockOut/CustomerArea/Navbar:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -72,7 +72,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("BlockOut/ColorRect2/Navbar:rect_position")
+tracks/1/path = NodePath("BlockOut/CustomerArea/Navbar:rect_position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -87,7 +87,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=1]
 resource_name = "show_nav_bar"
 tracks/0/type = "value"
-tracks/0/path = NodePath("BlockOut/ColorRect2/Navbar:modulate")
+tracks/0/path = NodePath("BlockOut/CustomerArea/Navbar:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("BlockOut/ColorRect2/Navbar:rect_position")
+tracks/1/path = NodePath("BlockOut/CustomerArea/Navbar:rect_position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -112,6 +112,7 @@ tracks/1/keys = {
 }
 
 [node name="CookingSystem" type="Node2D"]
+z_index = 1
 script = ExtResource( 1 )
 
 [node name="BlockOut" type="Control" parent="."]
@@ -124,7 +125,7 @@ rect_pivot_offset = Vector2( 96, 88 )
 mouse_filter = 2
 color = Color( 0.192157, 0.611765, 0.105882, 1 )
 
-[node name="ColorRect2" type="ColorRect" parent="BlockOut"]
+[node name="CustomerArea" type="ColorRect" parent="BlockOut"]
 margin_left = 160.0
 margin_right = 320.0
 margin_bottom = 180.0
@@ -132,20 +133,30 @@ rect_pivot_offset = Vector2( 96, 88 )
 mouse_filter = 2
 color = Color( 0.333333, 0, 0.917647, 1 )
 
-[node name="Customer" parent="BlockOut/ColorRect2" instance=ExtResource( 14 )]
+[node name="Customers" type="Node2D" parent="BlockOut/CustomerArea"]
+
+[node name="Customer" parent="BlockOut/CustomerArea/Customers" instance=ExtResource( 14 )]
 position = Vector2( 88, -8 )
 
-[node name="Customer Start Point" type="Node2D" parent="BlockOut/ColorRect2"]
+[node name="Customer Start Point" type="Node2D" parent="BlockOut/CustomerArea"]
 position = Vector2( 88, -8 )
 
-[node name="DirectionChange" parent="BlockOut/ColorRect2" instance=ExtResource( 13 )]
+[node name="DirectionChange" parent="BlockOut/CustomerArea" instance=ExtResource( 13 )]
 position = Vector2( 88, 108 )
 
-[node name="KitchenAction" parent="BlockOut/ColorRect2" instance=ExtResource( 13 )]
+[node name="KitchenAction" parent="BlockOut/CustomerArea" instance=ExtResource( 13 )]
 position = Vector2( -12, 88 )
 action = "SIGNAL"
 
-[node name="Navbar" type="TextureRect" parent="BlockOut/ColorRect2"]
+[node name="Slide Out Button" type="TextureButton" parent="BlockOut/CustomerArea"]
+margin_left = 136.0
+margin_top = 8.0
+margin_right = 200.0
+margin_bottom = 72.0
+rect_scale = Vector2( 0.25, 0.25 )
+texture_normal = ExtResource( 2 )
+
+[node name="Navbar" type="TextureRect" parent="BlockOut/CustomerArea"]
 margin_left = 160.0
 margin_right = 256.0
 margin_bottom = 180.0
@@ -155,46 +166,38 @@ texture = ExtResource( 8 )
 script = ExtResource( 6 )
 recipe_list = NodePath("MarginContainer/HBoxContainer/VBoxContainer")
 
-[node name="MarginContainer" type="MarginContainer" parent="BlockOut/ColorRect2/Navbar"]
+[node name="MarginContainer" type="MarginContainer" parent="BlockOut/CustomerArea/Navbar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 custom_constants/margin_top = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BlockOut/ColorRect2/Navbar/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BlockOut/CustomerArea/Navbar/MarginContainer"]
 margin_top = 30.0
 margin_right = 96.0
 margin_bottom = 180.0
 mouse_filter = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BlockOut/ColorRect2/Navbar/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BlockOut/CustomerArea/Navbar/MarginContainer/HBoxContainer"]
 margin_left = 48.0
 margin_right = 48.0
 margin_bottom = 150.0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="BlockOut/ColorRect2/Navbar"]
+[node name="Label" type="Label" parent="BlockOut/CustomerArea/Navbar"]
 margin_left = 28.0
 margin_top = 8.0
 margin_right = 68.0
 margin_bottom = 22.0
 text = "Orders"
 
-[node name="Slide Out Button2" type="TextureButton" parent="BlockOut/ColorRect2/Navbar"]
+[node name="Slide Out Button2" type="TextureButton" parent="BlockOut/CustomerArea/Navbar"]
 margin_left = 8.0
 margin_top = 160.0
 margin_right = 18.0
 margin_bottom = 170.0
 texture_normal = ExtResource( 10 )
-
-[node name="Slide Out Button" type="TextureButton" parent="BlockOut/ColorRect2"]
-margin_left = 136.0
-margin_top = 8.0
-margin_right = 200.0
-margin_bottom = 72.0
-rect_scale = Vector2( 0.25, 0.25 )
-texture_normal = ExtResource( 2 )
 
 [node name="UI" type="Control" parent="."]
 margin_right = 320.0
@@ -359,3 +362,7 @@ autoplay = "RESET"
 anims/RESET = SubResource( 2 )
 anims/close_nav_bar = SubResource( 3 )
 anims/show_nav_bar = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

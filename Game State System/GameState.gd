@@ -2,7 +2,7 @@ extends Node
 
 export var all_recipes = []
 
-var unlocked_recipes = []
+export var unlocked_recipes = []
 
 export var available_ingredients = []
 

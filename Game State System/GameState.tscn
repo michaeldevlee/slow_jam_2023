@@ -15,5 +15,8 @@
 [node name="GameState" type="Node2D"]
 script = ExtResource( 1 )
 all_recipes = [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ), null, null ]
+unlocked_recipes = [ ExtResource( 10 ), ExtResource( 9 ) ]
 available_ingredients = [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 2 ) ]
+unlocked_ingredients = [ ExtResource( 7 ), ExtResource( 3 ) ]
 available_enhancers = [ ExtResource( 8 ), ExtResource( 8 ), null ]
+unlocked_enhancers = [ ExtResource( 10 ) ]

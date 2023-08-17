@@ -1,7 +1,7 @@
 extends Area2D
 class_name ActionChange
 
-signal customer_arrived (node)
+signal customer_arrived (message)
 var activated = false
 
 export (String, "MOVE", "SIGNAL") var action = "MOVE"
@@ -32,8 +32,8 @@ func updateDirection(direction):
 		"LEFT":
 			cast_to = Vector2(-16, 0)
 
-func send_signal():
+func send_signal(message):
 	if !activated:
-		emit_signal("customer_arrived", self)
+		emit_signal("customer_arrived", message)
 		print('sent signal')
 		activated = true
