@@ -35,7 +35,3 @@ func cleanup_order(s):
 	if s is Recipe:
 		pass
 
-func _process(delta):
-	if Input.is_action_just_pressed("ui_up"):
-		var i_recipe = recipe.instance()
-		navbar_list.add_child(i_recipe)
