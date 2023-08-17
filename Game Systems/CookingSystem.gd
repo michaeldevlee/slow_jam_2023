@@ -6,6 +6,11 @@ onready var recipe_view = get_node("UI/PopUpBackground/RecipeManagement")
 onready var modal = get_node("UI")
 onready var open_ui_button = get_node("BlockOut/ColorRect2/Slide Out Button")
 onready var anim_plyer = get_node("AnimationPlayer")
+onready var customer_arrival_point = get_node("BlockOut/ColorRect2/KitchenAction")
+
+var rng = RandomNumberGenerator.new()
+
+var recipe_scene = preload("res://Game Systems/Recipe.tscn")
 
 func init():
 	set_process_input(true)
@@ -15,6 +20,18 @@ func _ready():
 	open_ui_button.connect("button_up", self, "open_navbar")
 	navbar.connect("navbar_exited", self, "close_navbar")
 	InteractEventBus.connect("mini_game_ended", self, "process_mini_game")
+	
+	if customer_arrival_point.action == "SIGNAL":
+		customer_arrival_point.connect("customer_arrived", self, "recipe_init")
+
+func recipe_init(customer_action):
+	var limit = GameState.unlocked_ingredients.size()-1
+	var rand = rng.randi_range(0, limit)
+	var chosen_order = GameState.unlocked_recipes[rand]
+	var recipe_instance : Recipe = recipe_scene.instance()
+	
+	recipe_instance.order = chosen_order
+	navbar.order_init(recipe_instance)
 
 func connect_recipe(recipe : Recipe):
 	recipe.connect("recipe_selected", self, "view_recipe")

@@ -5,7 +5,7 @@ onready var cast = get_node("RayCast2D")
 export var canMove = false
 export (String, "UP", "DOWN", "RIGHT", "LEFT") var direction = "DOWN"
 
-var speed = 0.4
+var speed = 1
 
 func checkIfAnyoneInFront():
 		if cast.is_colliding():

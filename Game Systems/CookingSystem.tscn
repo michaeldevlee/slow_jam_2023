@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Game Systems/CookingSystem.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://Game Systems/DirectionChange.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Game Systems/Customer.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Game Systems/CustomerArea.gd" type="Script" id=15]
 
 [sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 12 )
@@ -132,7 +131,6 @@ margin_bottom = 180.0
 rect_pivot_offset = Vector2( 96, 88 )
 mouse_filter = 2
 color = Color( 0.333333, 0, 0.917647, 1 )
-script = ExtResource( 15 )
 
 [node name="Customer" parent="BlockOut/ColorRect2" instance=ExtResource( 14 )]
 position = Vector2( 88, -8 )
@@ -199,7 +197,6 @@ rect_scale = Vector2( 0.25, 0.25 )
 texture_normal = ExtResource( 2 )
 
 [node name="UI" type="Control" parent="."]
-visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 theme = SubResource( 9 )

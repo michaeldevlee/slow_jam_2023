@@ -16,6 +16,9 @@ func _ready():
 		navbar_list.connect("child_exiting_tree", self, "cleanup_order")
 		navbar_list.connect("child_entered_tree", self, "load_order")
 
+func order_init(recipe : Recipe):
+	navbar_list.add_child(recipe)
+
 func init_navbar():
 	exit_button.visible = true
 
@@ -28,8 +31,7 @@ func cleanup_navbar():
 		recipe.queue_free()
 
 func load_order(s):
-	if s is Recipe:
-		pass
+	print(s)
 
 func cleanup_order(s):
 	if s is Recipe:
