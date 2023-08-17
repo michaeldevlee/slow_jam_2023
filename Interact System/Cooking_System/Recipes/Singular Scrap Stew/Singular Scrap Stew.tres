@@ -10,7 +10,7 @@ required_ingredients = [ ExtResource( 2 ) ]
 upgrade_combo = {
 }
 enhancers = [  ]
-name = ""
+name = "Singular Scrap Stew"
 basic_reward = 1
 med_reward = 2
 big_reward = 3
