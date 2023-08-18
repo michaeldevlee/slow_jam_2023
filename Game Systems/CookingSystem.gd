@@ -14,6 +14,9 @@ onready var customer_area = get_node("BlockOut/CustomerArea/Customers")
 var recipe_scene = preload("res://Game Systems/Recipe.tscn")
 var customer_scene = preload("res://Game Systems/Customer.tscn")
 
+var max_order_count = 3
+var order_count = 0
+
 func init():
 	set_process_input(true)
 
@@ -27,11 +30,15 @@ func _ready():
 	if customer_arrival_point.action == "SIGNAL":
 		customer_arrival_point.connect("customer_arrived", self, "recipe_init")
 
-func recipe_init(customer_action):
-	if customer_action is Recipe_Order:
+func recipe_init(customer_action : Customer):
+	if customer_action.order is Recipe_Order and order_count < max_order_count:
+		order_count += 1
 		var recipe_instance : Recipe = recipe_scene.instance()
-		recipe_instance.order = customer_action
+		recipe_instance.order = customer_action.order
 		navbar.order_init(recipe_instance)
+		customer_action.changeDirectionTo(Vector2(0, -16), "UP")
+		customer_action.busy = false
+		print(customer_action)
 
 func connect_recipe(recipe : Recipe):
 	recipe.connect("recipe_selected", self, "view_recipe")
@@ -57,6 +64,10 @@ func process_mini_game(finished_recipe : Recipe):
 	Inventory.money += recipe_resource.reward
 	print(Inventory.money )
 	finished_recipe.queue_free()
+	open_order_slot()
+
+func open_order_slot():
+	order_count -= 1
 
 func spawn_customer():
 	var customer = customer_scene.instance()

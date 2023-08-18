@@ -1,4 +1,5 @@
 extends Area2D
+class_name Customer
 
 onready var cast = get_node("RayCast2D")
 onready var timer = get_node("Timer")
@@ -6,6 +7,8 @@ export var canMove = false
 export (String, "UP", "DOWN", "RIGHT", "LEFT") var direction = "DOWN"
 
 var rng = RandomNumberGenerator.new()
+
+var busy = false
 
 var order
 
@@ -22,10 +25,14 @@ func getMad():
 	set_modulate(Color(1,0,0,1))
 
 func checkIfAnyoneInFront():
-		if cast.is_colliding():
+		if cast.get_collider():
 			canMove = false
 		else:
 			canMove = true
+
+func changeDirectionTo(new_cast_direction : Vector2, new_direction : String):
+	cast.cast_to = new_cast_direction
+	direction = new_direction
 
 func checkDirectionChange():
 	var collider = cast.get_collider()
@@ -38,7 +45,8 @@ func checkDirectionChange():
 				direction = new_direction
 				cast.cast_to = new_cast_direction
 			"SIGNAL":
-				collider.send_signal(order)
+				if !busy:
+					collider.send_signal(self)
 
 func handleMove():
 	if canMove:

@@ -21,15 +21,6 @@ font_data = ExtResource( 12 )
 [sub_resource type="Theme" id=6]
 default_font = SubResource( 7 )
 
-[sub_resource type="DynamicFont" id=8]
-font_data = ExtResource( 12 )
-
-[sub_resource type="Theme" id=9]
-default_font = SubResource( 8 )
-
-[sub_resource type="Animation" id=5]
-length = 0.001
-
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
@@ -111,6 +102,15 @@ tracks/1/keys = {
 "values": [ Vector2( 160, 0 ), Vector2( 64, 0 ) ]
 }
 
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 12 )
+
+[sub_resource type="Theme" id=9]
+default_font = SubResource( 8 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+
 [node name="CookingSystem" type="Node2D"]
 z_index = 1
 script = ExtResource( 1 )
@@ -143,6 +143,10 @@ position = Vector2( 88, -8 )
 
 [node name="DirectionChange" parent="BlockOut/CustomerArea" instance=ExtResource( 13 )]
 position = Vector2( 88, 108 )
+
+[node name="DirectionChange2" parent="BlockOut/CustomerArea" instance=ExtResource( 13 )]
+position = Vector2( 8, 8 )
+action = "STOP"
 
 [node name="KitchenAction" parent="BlockOut/CustomerArea" instance=ExtResource( 13 )]
 position = Vector2( -12, 88 )
@@ -199,7 +203,18 @@ margin_right = 18.0
 margin_bottom = 170.0
 texture_normal = ExtResource( 10 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+anims/RESET = SubResource( 2 )
+anims/close_nav_bar = SubResource( 3 )
+anims/show_nav_bar = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [node name="UI" type="Control" parent="."]
+visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 theme = SubResource( 9 )
@@ -356,13 +371,3 @@ mouse_filter = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/PopUpBackground/MiniGameScreen"]
 root_node = NodePath("")
 anims/RESET = SubResource( 5 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "RESET"
-anims/RESET = SubResource( 2 )
-anims/close_nav_bar = SubResource( 3 )
-anims/show_nav_bar = SubResource( 1 )
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
