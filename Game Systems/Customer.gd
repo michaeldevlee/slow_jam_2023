@@ -7,12 +7,9 @@ export var canMove = false
 export (String, "UP", "DOWN", "RIGHT", "LEFT") var direction = "DOWN"
 
 var rng = RandomNumberGenerator.new()
-
 var busy = false
-
 var order
-
-var speed = 1
+var speed = 0.4
 
 func _ready():
 	timer.connect("timeout", self, "getMad")

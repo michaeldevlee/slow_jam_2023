@@ -17,8 +17,11 @@ var customer_scene = preload("res://Game Systems/Customer.tscn")
 var max_order_count = 3
 var order_count = 0
 
+
 func init():
-	set_process_input(true)
+	customer_timer.wait_time = 3
+	customer_timer.start()
+	
 
 func _ready():
 	navbar.navbar_list.connect("child_entered_tree", self, "connect_recipe")
@@ -26,6 +29,8 @@ func _ready():
 	navbar.connect("navbar_exited", self, "close_navbar")
 	InteractEventBus.connect("mini_game_ended", self, "process_mini_game")
 	customer_timer.connect("timeout", self, "spawn_customer")
+	
+	init()
 	
 	if customer_arrival_point.action == "SIGNAL":
 		customer_arrival_point.connect("customer_arrived", self, "recipe_init")
@@ -35,10 +40,11 @@ func recipe_init(customer_action : Customer):
 		order_count += 1
 		var recipe_instance : Recipe = recipe_scene.instance()
 		recipe_instance.order = customer_action.order
+		recipe_instance.customer = customer_action
 		navbar.order_init(recipe_instance)
 		customer_action.changeDirectionTo(Vector2(0, -16), "UP")
 		customer_action.busy = false
-		print(customer_action)
+		
 
 func connect_recipe(recipe : Recipe):
 	recipe.connect("recipe_selected", self, "view_recipe")
@@ -60,6 +66,7 @@ func close_navbar():
 
 func process_mini_game(finished_recipe : Recipe):
 	var recipe_resource = finished_recipe.order
+	finished_recipe.customer.queue_free()
 	modal.exit()
 	Inventory.money += recipe_resource.reward
 	print(Inventory.money )
@@ -74,10 +81,15 @@ func spawn_customer():
 	customer.global_position = customer_spawn_point.position
 	customer_area.add_child(customer)
 
+func reset_customers():
+	for customer in customer_area.get_children():
+		customer.queue_free()
+		customer_timer.stop()
+
 func cleanup():
 	close_navbar()
 	navbar.cleanup_navbar()
 	modal.exit()
-	set_process_input(false)
-	set_process(false)
+	reset_customers()
+	
 	

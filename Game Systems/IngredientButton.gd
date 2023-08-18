@@ -10,6 +10,7 @@ func _ready():
 func increase():
 	if Inventory.inventory.has(ingredient):
 		var player_inv = Inventory.inventory[ingredient]
+		print('increase')
 		
 		if player_inv > modal_inv:
 			modal_inv += 1

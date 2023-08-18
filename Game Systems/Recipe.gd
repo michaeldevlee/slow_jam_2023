@@ -4,6 +4,7 @@ class_name Recipe
 signal recipe_selected (recipe)
 
 export var order : Resource
+var customer
 
 onready var recipe_picture_root = get_node("MarginContainer/HBoxContainer/VBoxContainer")
 onready var ingredient_icon_root = get_node("MarginContainer/HBoxContainer/VBoxContainer2")

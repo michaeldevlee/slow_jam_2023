@@ -37,7 +37,7 @@ func _ready():
 func getScene(scene):
 	if cookingSystem.visible == true:
 		scavengeSystem.cleanup()
-		cookingSystem._init()
+		cookingSystem.init()
 	else:
 		scavengeSystem.init()
 		cookingSystem.cleanup()

@@ -51,16 +51,21 @@ func load_order(recipe : Recipe):
 		var texture = ingredient.icon
 		var qty_button = quantity_button.instance()
 		qty_button.texture_normal = texture
-		if !Inventory.inventory.has(ingredient.name) || Inventory.inventory[ingredient.name] < 1:
-			print("you dont have " + ingredient.name)
-			qty_button.set_modulate(Color(0.2, 0.2, 0.5, 1))
-			qty_button.get_child(0).set_text("0")
-			can_create_dish = false
-			
 		
-		qty_button.ingredient = ingredient.name
+		refresh_order(ingredient, qty_button)
+		
+		qty_button.ingredient = ingredient
 		ingredient_icon.add_child(qty_button)
-	
+
+func refresh_order(ingredient, ingredient_button):
+	if !Inventory.inventory.has(ingredient) || Inventory.inventory[ingredient] < 1:
+		print("you dont have " + ingredient.name)
+		ingredient_button.set_modulate(Color(0.2, 0.2, 0.5, 1))
+		ingredient_button.get_child(0).set_text("0")
+		can_create_dish = false
+	else:
+		can_create_dish = true
+
 func initiate_mini_game_mode():
 	if can_create_dish:
 		for icon in ingredient_icon.get_children():
