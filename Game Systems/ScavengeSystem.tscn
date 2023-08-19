@@ -1,11 +1,134 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Game Systems/ScavengeSystem.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Camera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Interact System/Scavenge_System/Collectibles/Scraphead Noodle/Scraphead Noodle.tscn" type="PackedScene" id=4]
 
 [node name="ScavengeSystem" type="Node2D"]
+position = Vector2( 2400, -540 )
 script = ExtResource( 1 )
+
+[node name="BlockOut" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 320.0
+margin_bottom = 180.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -180.0
+margin_bottom = -180.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect11" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -360.0
+margin_bottom = -360.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = -180.0
+margin_right = -320.0
+margin_bottom = -180.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect12" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -640.0
+margin_top = -180.0
+margin_right = -640.0
+margin_bottom = -180.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect4" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_right = -320.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect5" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 320.0
+margin_top = -180.0
+margin_right = 320.0
+margin_bottom = -180.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect10" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 640.0
+margin_top = -180.0
+margin_right = 640.0
+margin_bottom = -180.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect7" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 180.0
+margin_bottom = 180.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect13" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 360.0
+margin_bottom = 360.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect8" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = 180.0
+margin_right = -320.0
+margin_bottom = 180.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect9" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 320.0
+margin_top = 180.0
+margin_right = 320.0
+margin_bottom = 180.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
+
+[node name="ColorRect6" type="ColorRect" parent="BlockOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 320.0
+margin_right = 320.0
+mouse_filter = 2
+color = Color( 0.2, 0.0431373, 0.0431373, 1 )
 
 [node name="Label" type="Label" parent="."]
 margin_right = 40.0
@@ -13,5 +136,26 @@ margin_bottom = 14.0
 text = "scavenging"
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 160, 88 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 160, 88 )
+smoothing_enabled = true
+smoothing_speed = 10.0
+
+[node name="Ingredients" type="Node2D" parent="."]
+
+[node name="Scraphead Noodle" parent="Ingredients" instance=ExtResource( 4 )]
+position = Vector2( 98, 56 )
+mode = "SCAVENGE"
+
+[node name="Scraphead Noodle2" parent="Ingredients" instance=ExtResource( 4 )]
+position = Vector2( 212, 260 )
+mode = "SCAVENGE"
+
+[node name="Scraphead Noodle3" parent="Ingredients" instance=ExtResource( 4 )]
+position = Vector2( 528, 68 )
+mode = "SCAVENGE"
+
+[node name="Player Start Position" type="Position2D" parent="."]
+position = Vector2( 160, 88 )

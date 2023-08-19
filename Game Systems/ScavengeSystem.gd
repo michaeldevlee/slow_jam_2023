@@ -3,6 +3,10 @@ class_name ScavengeSystem
 
 onready var camera = get_node("Camera2D")
 onready var player = get_node("Player")
+onready var player_start_position = get_node("Player Start Position")
+
+func _ready():
+	init()
 
 func init():
 	set_process_input(true)
@@ -12,7 +16,7 @@ func init():
 	camera.limit_left = -10000000
 	camera.limit_top = -10000000
 	camera.player = player
-	player.global_position = Vector2()
+	player.global_position = player_start_position.global_position
 func cleanup():
 	set_process_input(false)	
 	set_process(false)
