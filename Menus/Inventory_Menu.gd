@@ -31,14 +31,15 @@ func updateSlots():
 				slot.quantity = Inventory.inventory[selected_item]
 				slot.item_picture.texture = selected_item.icon
 	print(item_keys)
-	
-	
+
 
 func test(slot):
-	print(slot.item.name)
-	print(slot.quantity)
-	
-	
+	pass
 
 func close():
-	print('close UI')
+	visible = false
+
+
+func _process(delta):
+	if Input.is_action_just_pressed("inventory"):
+		visible = !visible

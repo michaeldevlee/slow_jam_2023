@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Interact System/Cooking_System/Recipes/base_recipe_res.gd" type="Script" id=1]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Scraphead Noodle/Scraphead Noodles.tres" type="Resource" id=2]
-[ext_resource path="res://Game Systems/Cooking Mini Games/Rusty MeatBall Rolling/Rusty Meatball Rolling.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game Systems/Cooking Mini Games/Noodle Shot/Noodle Shot.tscn" type="PackedScene" id=3]
 
 [resource]
 resource_local_to_scene = true

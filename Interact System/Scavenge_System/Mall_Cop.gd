@@ -58,8 +58,4 @@ func go_back_to_patrol(body):
 func _physics_process(delta):
 	switchState(curr_state, delta)
 	
-	if Input.is_action_just_pressed("ui_down"):
-		curr_state = "ALERT"
-	if Input.is_action_just_pressed("ui_up"):
-		curr_state = "PATROL"
 		

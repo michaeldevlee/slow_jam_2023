@@ -138,7 +138,7 @@ text = "scavenging"
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 88 )
-speed = 50
+speed = 100
 
 [node name="Camera2D" parent="." instance=ExtResource( 3 )]
 position = Vector2( 160, 88 )
@@ -164,3 +164,4 @@ position = Vector2( 160, 88 )
 
 [node name="Mall Cop" parent="." instance=ExtResource( 5 )]
 position = Vector2( -164, 272 )
+speed = 80

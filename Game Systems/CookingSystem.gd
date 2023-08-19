@@ -92,4 +92,9 @@ func cleanup():
 	modal.exit()
 	reset_customers()
 	
-	
+func _process(delta):
+	if Input.is_action_just_pressed("toggle_navbar"):
+		if open_ui_button.visible == true:
+			open_navbar()
+		else:
+			close_navbar()	
