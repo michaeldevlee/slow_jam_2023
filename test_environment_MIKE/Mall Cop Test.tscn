@@ -7,6 +7,7 @@
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 112, 64 )
+speed = 50
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
 patrolTo = Vector2( 100, 0 )

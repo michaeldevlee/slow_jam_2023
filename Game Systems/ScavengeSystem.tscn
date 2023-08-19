@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Game Systems/ScavengeSystem.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Scraphead Noodle/Scraphead Noodle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Interact System/Scavenge_System/Mall_Cop.tscn" type="PackedScene" id=5]
 
 [node name="ScavengeSystem" type="Node2D"]
 position = Vector2( 2400, -540 )
@@ -137,6 +138,7 @@ text = "scavenging"
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 88 )
+speed = 50
 
 [node name="Camera2D" parent="." instance=ExtResource( 3 )]
 position = Vector2( 160, 88 )
@@ -159,3 +161,6 @@ mode = "SCAVENGE"
 
 [node name="Player Start Position" type="Position2D" parent="."]
 position = Vector2( 160, 88 )
+
+[node name="Mall Cop" parent="." instance=ExtResource( 5 )]
+position = Vector2( -164, 272 )
