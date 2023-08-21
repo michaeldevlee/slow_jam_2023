@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Game Systems/MiniGame.gd" type="Script" id=1]
-[ext_resource path="res://Game Systems/180x104-00000000.png" type="Texture" id=2]
+[ext_resource path="res://test_environment_MIKE/Test Assets/240 x 144 Transparent.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=2]
 length = 0.001

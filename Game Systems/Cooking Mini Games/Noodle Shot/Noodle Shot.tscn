@@ -11,6 +11,8 @@ extents = Vector2( 32, 30 )
 extents = Vector2( 10, 25 )
 
 [node name="Noodle Shot" instance=ExtResource( 1 )]
+margin_right = -140.0
+margin_bottom = -76.0
 script = ExtResource( 2 )
 compatible_condiment_1 = "Slimey Broth Reduction"
 
@@ -19,14 +21,13 @@ wait_time = 10.0
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="." index="2"]
-position = Vector2( 120, 88 )
+position = Vector2( 120, 104 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( 0, 2 )
 shape = SubResource( 1 )
 
 [node name="Frying Pan" type="Sprite" parent="Area2D" index="1"]
-position = Vector2( 0, 4 )
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 3 )
 
