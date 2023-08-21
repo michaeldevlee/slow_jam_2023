@@ -9,8 +9,10 @@ length = 0.001
 [node name="MiniGame" type="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -140.0
-margin_bottom = -76.0
+margin_right = -80.0
+margin_bottom = -36.0
+rect_clip_content = true
+mouse_filter = 2
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://Interact System/Cooking_System/Recipes/base_recipe_res.gd" type="Script" id=1]
+[ext_resource path="res://Interact System/Scavenge_System/Collectibles/Scraphead Noodle/Scraphead Noodles.tres" type="Resource" id=2]
+[ext_resource path="res://Game Systems/Cooking Mini Games/Noodle Shot/Noodle Shot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/UI/Icon_Recipe_InterOnionRings.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/Icon_Recipe_InterOnionRings_22x22.png" type="Texture" id=5]
+[ext_resource path="res://Interact System/Scavenge_System/Collectibles/Rusty Meatballs/Rusty Meatballs.tres" type="Resource" id=6]
+[ext_resource path="res://Interact System/Scavenge_System/Collectibles/Quantum Batter/Quantum Batter.tres" type="Resource" id=7]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource( 1 )
+required_ingredients = [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ) ]
+upgrade_combo = {
+}
+enhancers = [  ]
+name = "Interdimensional Onion Rings"
+icon = ExtResource( 4 )
+mini_icon = ExtResource( 5 )
+mini_game = ExtResource( 3 )
+basic_reward = 1
+med_reward = 2
+big_reward = 3

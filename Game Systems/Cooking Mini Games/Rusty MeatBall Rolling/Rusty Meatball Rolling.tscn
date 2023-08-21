@@ -5,6 +5,7 @@
 [ext_resource path="res://Game Systems/Cooking Mini Games/Rusty MeatBall Rolling/Rusty Meatball Rolling.gd" type="Script" id=3]
 
 [node name="Rusty Meatball Squeeze" instance=ExtResource( 1 )]
+expand = true
 script = ExtResource( 3 )
 compatible_condiment_1 = "Rusty Relish"
 

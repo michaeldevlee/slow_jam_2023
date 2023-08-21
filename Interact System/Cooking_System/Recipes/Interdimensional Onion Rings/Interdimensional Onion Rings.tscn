@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game Systems/Recipe.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interact System/Cooking_System/Recipes/Singular Scrap Stew/Singular Scrap Stew.tres" type="Resource" id=2]
+
+[node name="Interdimensional Onion Rings" instance=ExtResource( 1 )]
+order = ExtResource( 2 )

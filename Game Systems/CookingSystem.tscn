@@ -206,9 +206,9 @@ anims/show_nav_bar = SubResource( 1 )
 wait_time = 3.0
 
 [node name="UI" type="Control" parent="."]
-visible = false
 margin_right = 320.0
 margin_bottom = 180.0
+mouse_filter = 2
 theme = SubResource( 9 )
 script = ExtResource( 5 )
 mini_game_screen_path = NodePath("PopUpBackground/MiniGameScreen")
@@ -347,15 +347,13 @@ size_flags_vertical = 0
 texture_normal = ExtResource( 4 )
 
 [node name="MiniGameScreen" type="Control" parent="UI/PopUpBackground"]
-visible = false
 margin_right = 240.0
 margin_bottom = 144.0
 mouse_filter = 2
 script = ExtResource( 9 )
 
 [node name="MiniGameContainer" type="HBoxContainer" parent="UI/PopUpBackground/MiniGameScreen"]
-margin_left = 30.0
-margin_top = 20.0
-margin_right = 210.0
-margin_bottom = 116.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 2
+alignment = 1
