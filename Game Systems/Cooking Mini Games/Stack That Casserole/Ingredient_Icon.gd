@@ -1,3 +1,3 @@
 extends TextureRect
 
-var ingredient_name
+var ingredient

@@ -10,11 +10,10 @@ export var rusty_meatball : Resource
 signal level_completed
 
 var ingredients = []
-var queue
 
 var ingredient_icon = preload("res://Game Systems/Cooking Mini Games/Stack That Casserole/Ingredient_Icon.tscn")
-var level = 5
-var last_level = 6
+var level = 0
+var last_level = 2
 var initial_ingredient_count = 2
 var rng = RandomNumberGenerator.new()
 
@@ -26,31 +25,47 @@ func _ready():
 		quantum_batter,
 		rusty_meatball
 	]
-	
+	connect_buttons()
 	load_level(level)
-	for button in get_children():
-		if button is TextureButton:
-			button.connect("button_up", self, "add", [button.name])
 
 func load_level(level_number):
-	if level_number < last_level:	
+	if level_number < last_level:
+		clear_ingredients_board()
 		for i in (level_number + 2):
 			var ran_ing : Ingredient = ingredients[rng.randi_range(0, 2)]
 			var ing_instance = ingredient_icon.instance()
 			ing_instance.texture = ran_ing.icon
-			ing_instance.ingredient_name = ran_ing.name
+			ing_instance.ingredient = ran_ing
 			ingredients_root.add_child(ing_instance)
-	
-	queue = ingredients_root.get_children()
-	
-func add(ingredient_name):	
-	if ingredient_name == queue[0].ingredient_name:
-		var curr_ingredient = queue.pop_front()
-		curr_ingredient.set_modulate(Color(1,1,1,0.4))
 	else:
-		print('wrong')
+		print('end of game')
+		disable_buttons()
+		
 	
-	if queue.size() == 0:
+func clear_ingredients_board():
+	for ingredient in ingredients_root.get_children():		
+		ingredient.queue_free()
+		
+func connect_buttons():
+	for button in get_children():
+		if button is TextureButton:
+			button.connect("button_up", self, "add", [button])
+
+func disable_buttons():
+	for button in get_children():
+		if button is TextureButton:
+			button.disabled = true
+
+func add(ingredient):	
+	if ingredient.name == ingredients_root.get_children()[0].ingredient.name:
+		ingredients_root.get_children()[0].set_modulate(Color(1,1,1,0.4))
+		ingredients_root.remove_child(ingredients_root.get_child(0))	
+		
+	else:
+		print('wrong1')
+	if ingredients_root.get_children().size() == 0:
 		print('end round')
-		return
+		level += 1
+		load_level(level)
+		
 
