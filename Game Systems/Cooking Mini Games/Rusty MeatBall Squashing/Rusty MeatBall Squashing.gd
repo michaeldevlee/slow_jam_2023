@@ -17,7 +17,6 @@ func _ready():
 	for button in get_children():
 		if button is TextureButton:
 			button.connect("button_up", self, "shrink", [button])
-	enhancer = recipe.order.enhancers[0]
 
 func addScore(score : float):
 	if score < high_size_req:

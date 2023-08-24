@@ -5,9 +5,15 @@ onready var grab_spot = get_node("GrabSpot")
 var selected = false
 var can_interact = false
 var wrap
-var new_position = 0
+var new_position = Vector2()
 var original_position 
 var original_mouse_pos
+var orientation
+
+const MAX_HORZ_DISTANCE = 300
+const MAX_VERT_DISTANCE = 200
+
+var already_put_down = false
 
 signal reset_mouse
 
@@ -18,10 +24,9 @@ func _ready():
 	if get_parent():
 		wrap = get_parent()
 		original_position = wrap.global_position
-		Input.warp_mouse_position(grab_spot.global_position)
 
 func interact():
-	if get_parent():
+	if get_parent() and can_interact:
 		selected = !selected
 		
 func toggle_selected(status):
@@ -29,26 +34,20 @@ func toggle_selected(status):
 
 func handleSelect():
 	if selected:
-		wrap.global_position.x = wrap.global_position.x + new_position
+		wrap.global_position = wrap.global_position + new_position
 
 func _unhandled_input(event):
-	
 	if event is InputEventMouseButton and event.is_action_pressed("mouse_interact") and can_interact:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		selected = true
 	elif event is InputEventMouseButton and event.is_action_released("mouse_interact"):
+		already_put_down = true
 		selected = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		wrap.emit_signal("wrap_placed")
+		queue_free()
 	elif event is InputEventMouseMotion and selected:
-		if wrap.global_position.x > -200:
-			new_position = event.relative.x
-		else:
-			wrap.global_position.x = -170
-
-		if wrap.global_position.x < 50:
-			new_position = event.relative.x
-		else:
-			wrap.global_position.x = 20
+		new_position = event.relative
 		
 func _process(delta):
 	handleSelect()

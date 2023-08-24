@@ -29,20 +29,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Game Systems/Customer.gd"
 }, {
-"base": "Control",
-"class": "Enhancer",
-"language": "GDScript",
-"path": "res://Interact System/Cooking_System/Enhancers/Enhancer.gd"
-}, {
 "base": "Resource",
 "class": "Enhancer_Resource",
 "language": "GDScript",
 "path": "res://Interact System/Cooking_System/Enhancers/enhancer_res.gd"
 }, {
+"base": "Area2D",
+"class": "FryingPan",
+"language": "GDScript",
+"path": "res://Game Systems/Cooking Mini Games/Quantum Frying Frenzy/Frying Tray.gd"
+}, {
 "base": "Resource",
 "class": "Ingredient",
 "language": "GDScript",
 "path": "res://Interact System/Scavenge_System/Collectibles/ingredient_resource.gd"
+}, {
+"base": "Selectable",
+"class": "Meteor",
+"language": "GDScript",
+"path": "res://Game Systems/Cooking Mini Games/Quantum Frying Frenzy/Meteor.gd"
 }, {
 "base": "TextureRect",
 "class": "MiniGame",
@@ -84,9 +89,10 @@ _global_script_class_icons={
 "Collectible": "",
 "CookingSystem": "",
 "Customer": "",
-"Enhancer": "",
 "Enhancer_Resource": "",
+"FryingPan": "",
 "Ingredient": "",
+"Meteor": "",
 "MiniGame": "",
 "MiniGameScreen": "",
 "Noodle": "",
