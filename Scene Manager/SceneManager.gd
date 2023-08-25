@@ -36,9 +36,21 @@ func _ready():
 
 func getScene(scene):
 	if cookingSystem.visible == true:
+		var event = {
+			"message" : "Time to start cooking!",
+			"ingredient" : null
+		}
+	
+		InteractEventBus.emit_signal("pop_up_event_started", event)
 		scavengeSystem.cleanup()
 		cookingSystem.init()
 	else:
+		var event = {
+			"message" : "Time to start digging for garbage!",
+			"ingredient" : null
+		}
+	
+		InteractEventBus.emit_signal("pop_up_event_started", event)
 		scavengeSystem.init()
 		cookingSystem.cleanup()
 	

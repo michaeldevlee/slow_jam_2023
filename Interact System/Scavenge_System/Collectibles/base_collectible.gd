@@ -12,10 +12,7 @@ func _ready():
 
 
 func interact():
-	if !Inventory.inventory.has(ingredient.name):
-		Inventory.inventory[ingredient.name] = 0
-	
-	Inventory.inventory[ingredient.name] += 1
+	Inventory.add(ingredient)
 	queue_free()
 		
 

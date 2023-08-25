@@ -13,10 +13,11 @@ var speed = 0.4
 
 func _ready():
 	timer.connect("timeout", self, "getMad")
-	var limit = GameState.unlocked_ingredients.size()-1
-	rng.randomize()
-	var rand = rng.randi_range(0, limit)
-	order = GameState.unlocked_recipes[rand]
+	if GameState.unlocked_ingredients.size() > 0:
+		var limit = GameState.unlocked_recipes.size()-1
+		rng.randomize()
+		var rand = rng.randi_range(0, limit)
+		order = GameState.unlocked_recipes[rand]
 
 func getMad():
 	set_modulate(Color(1,0,0,1))

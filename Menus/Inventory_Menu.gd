@@ -21,25 +21,42 @@ func _ready():
 
 func updateSlots():
 	var item_keys = Inventory.inventory.keys()
-	
 	for slot in inventory_slots:
+		
+		if item_keys.size() == 0:
+			break
+			
 		if slot.item == null:
-			var selected_item = item_keys.pop_back()
+			var selected_item = item_keys.back()
 			
 			if selected_item:
 				slot.item = selected_item
 				slot.quantity = Inventory.inventory[selected_item]
 				slot.item_picture.texture = selected_item.icon
+				slot.quantity_label.visible = true
+	
+		if slot.item == item_keys.back():
+			slot.quantity = Inventory.inventory[item_keys.back()]
+			slot.update_quantity()
+		
+		item_keys.pop_back()
+
+			
 	print(item_keys)
 
 
-func test(slot):
-	pass
+func clear_slots():
+	for slot in inventory_slots:
+		slot.item = null
+		slot.quantity = 0
+		slot.quantity_label.visible = false
 
 func close():
 	visible = false
+	get_tree().call_group("Inventory_Slot", "clear_slots")
 
 
 func _process(delta):
 	if Input.is_action_just_pressed("inventory"):
 		visible = !visible
+		updateSlots()

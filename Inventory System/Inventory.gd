@@ -24,10 +24,10 @@ func remove(ingredient):
 			inventory.ingredient -= 1;
 		else:
 			inventory[ingredient] = 0
-			
-func _process(delta):
-	if Input.is_action_just_pressed("ui_down"):
-		add(ing);
-	if Input.is_action_just_pressed("ui_up"):
-		add(ing2);
+#
+#func _process(delta):
+#	if Input.is_action_just_pressed("ui_down"):
+#		add(ing);
+#	if Input.is_action_just_pressed("ui_up"):
+#		add(ing2);
 	

@@ -35,5 +35,4 @@ func updateDirection(direction):
 
 func send_signal(message):
 	emit_signal("customer_arrived", message)
-	print('sent signal')
 

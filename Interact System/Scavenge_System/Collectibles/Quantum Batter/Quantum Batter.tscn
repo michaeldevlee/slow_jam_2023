@@ -5,3 +5,4 @@
 
 [node name="Quantum Batter" instance=ExtResource( 1 )]
 ingredient = ExtResource( 2 )
+mode = "SCAVENGE"

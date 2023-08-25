@@ -69,7 +69,6 @@ func process_mini_game(finished_recipe : Recipe):
 	finished_recipe.customer.queue_free()
 	modal.exit()
 	Inventory.money += recipe_resource.reward
-	print(Inventory.money )
 	finished_recipe.queue_free()
 	open_order_slot()
 
@@ -84,8 +83,8 @@ func spawn_customer():
 func reset_customers():
 	for customer in customer_area.get_children():
 		customer.queue_free()
-		customer_timer.stop()
-
+	
+	customer_timer.stop()
 func cleanup():
 	close_navbar()
 	navbar.cleanup_navbar()
