@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Game Systems/MiniGame.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game Systems/Cooking Mini Games/Alien Eggplant Cut/Alien Eggplant Cut.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://icon_16x16.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Alien Eggplant Cut" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="." index="2"]
+position = Vector2( 128, 68 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="." index="3"]
+position = Vector2( 128, 68 )
+texture = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="." index="4"]
+position = Vector2( 48, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite3" type="Sprite" parent="Area2D" index="1"]
+texture = ExtResource( 4 )
