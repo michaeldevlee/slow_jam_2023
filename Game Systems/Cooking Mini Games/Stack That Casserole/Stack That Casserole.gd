@@ -7,13 +7,14 @@ export var rotten_meteor_marinara : Resource
 export var quantum_batter : Resource 
 export var rusty_meatball : Resource
 
+export var last_level = 2
+
 signal level_completed
 
 var ingredients = []
 
 var ingredient_icon = preload("res://Game Systems/Cooking Mini Games/Stack That Casserole/Ingredient_Icon.tscn")
 var level = 0
-var last_level = 2
 var initial_ingredient_count = 2
 var rng = RandomNumberGenerator.new()
 

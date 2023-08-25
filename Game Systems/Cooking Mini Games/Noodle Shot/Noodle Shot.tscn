@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Game Systems/MiniGame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game Systems/Cooking Mini Games/Noodle Shot/Noodle Shot.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Sprite_FryingPan.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 30 )
+extents = Vector2( 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 25 )
@@ -24,7 +24,7 @@ autostart = true
 position = Vector2( 120, 104 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 0, 2 )
+position = Vector2( 4, -4 )
 shape = SubResource( 1 )
 
 [node name="Frying Pan" type="Sprite" parent="Area2D" index="1"]

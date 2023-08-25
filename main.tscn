@@ -13,5 +13,5 @@ script = ExtResource( 2 )
 visible = false
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 400.0
+wait_time = 10.0
 autostart = true

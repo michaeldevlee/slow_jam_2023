@@ -1,7 +1,7 @@
 extends MiniGame
 
 onready var timer = get_node("Timer")
-var growth_rate = 0.2
+var growth_rate = 1
 
 var basic_size_req = 1
 var med_size_req = 0.5
@@ -59,7 +59,7 @@ func end_mini_game():
 	notify_mini_game_ended()
 
 func shrink(button):
-	button.rect_scale -= Vector2(0.1, 0.1)
+	button.rect_scale -= Vector2(0.5, 0.5)
 
 func _process(delta):
 	$Meatball.rect_scale += Vector2(growth_rate,growth_rate) * delta
