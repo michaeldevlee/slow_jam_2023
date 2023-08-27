@@ -59,7 +59,6 @@ func load_order(recipe : Recipe):
 
 func refresh_order(ingredient, ingredient_button):
 	if !Inventory.inventory.has(ingredient) || Inventory.inventory[ingredient] < 1:
-		print("you dont have " + ingredient.name)
 		ingredient_button.set_modulate(Color(0.2, 0.2, 0.5, 1))
 		ingredient_button.get_child(0).set_text("0")
 		can_create_dish = false
@@ -68,14 +67,17 @@ func refresh_order(ingredient, ingredient_button):
 
 func initiate_mini_game_mode():
 	if can_create_dish:
+		var submitted_ingredient_count = 0
 		for icon in ingredient_icon.get_children():
 			if Inventory.inventory.has(icon.ingredient):
 				Inventory.inventory[icon.ingredient] -= icon.modal_inv
+				submitted_ingredient_count += icon.modal_inv
 		
 		if mini_game_screen is MiniGameScreen:
 			mini_game_screen.visible = true
 			recipe_screen.visible = false
 			curr_recipe.order.enhancers.append(enhancer_button.selected_enhancer)
+			curr_recipe.order.submitted_ingredient_count = submitted_ingredient_count
 			mini_game_screen.start(curr_recipe)
 		
 func exit():

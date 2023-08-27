@@ -39,7 +39,6 @@ func load_level(level_number):
 			ing_instance.ingredient = ran_ing
 			ingredients_root.add_child(ing_instance)
 	else:
-		print('end of game')
 		disable_buttons()
 		
 	

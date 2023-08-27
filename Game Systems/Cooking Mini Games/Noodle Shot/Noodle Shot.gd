@@ -25,12 +25,13 @@ func handleFry(body):
 			score -= 1
 
 func checkScore(score):
-	if score >= 9:
-		print("high reward")
-	elif score > 5 && score < 9:
-		print("medium reward")
-	else:
-		print("base reward")
+	if recipe:
+		if score >= 9:
+			set_reward_type("big")
+		elif score > 5 && score < 9:
+			set_reward_type("medium")
+		else:
+			set_reward_type("basic")
 
 func spawn_noodle():
 	rng.randomize()
@@ -39,10 +40,19 @@ func spawn_noodle():
 	
 	noodles_root.add_child(noodle_instance)
 
+func remove_all_noodles():
+	for noodle in noodles_root.get_children():
+		noodle.queue_free()
+
 func remove_noodle(body):
-	print(body)
 	body.queue_free()
 
+func cleanup():
+	noodle_timer.stop()
+	remove_all_noodles()
+	
 func end_mini_game():
 	checkScore(score)
+	noodle_timer.stop()
+	remove_all_noodles()
 	notify_mini_game_ended()

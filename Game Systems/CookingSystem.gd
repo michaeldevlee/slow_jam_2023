@@ -10,6 +10,7 @@ onready var customer_arrival_point = get_node("BlockOut/CustomerArea/KitchenActi
 onready var customer_timer = get_node("Timer")
 onready var customer_spawn_point = get_node("BlockOut/CustomerArea/Customer Start Point")
 onready var customer_area = get_node("BlockOut/CustomerArea/Customers")
+onready var score_display = get_node("Label")
 
 var recipe_scene = preload("res://Game Systems/Recipe.tscn")
 var customer_scene = preload("res://Game Systems/Customer.tscn")
@@ -69,6 +70,8 @@ func process_mini_game(finished_recipe : Recipe):
 	finished_recipe.customer.queue_free()
 	modal.exit()
 	Inventory.money += recipe_resource.reward
+	score_display.set_text(recipe_resource.reward_type + " reward \n" + "+" + str(recipe_resource.reward) )
+	anim_plyer.play("display_score")
 	finished_recipe.queue_free()
 	open_order_slot()
 

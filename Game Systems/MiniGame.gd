@@ -9,3 +9,13 @@ export (String, "None", "Rusty Relish", "Slimey Broth Reduction", " Scrapheap Sa
 func notify_mini_game_ended():
 	InteractEventBus.emit_signal("mini_game_ended", recipe)
 	queue_free()
+
+func set_reward_type(type):
+	match type:
+		"basic":
+			recipe.order.set_reward_type("basic")
+		"medium":
+			recipe.order.set_reward_type("medium")
+		"big":
+			recipe.order.set_reward_type("big")
+			

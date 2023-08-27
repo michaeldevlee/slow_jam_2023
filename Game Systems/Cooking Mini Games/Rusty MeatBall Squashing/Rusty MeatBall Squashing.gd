@@ -23,10 +23,8 @@ func addScore(score : float):
 		score_arr.append(3)
 	elif score < med_size_req:
 		score_arr.append(2)
-	elif score < basic_size_req:
-		score_arr.append(1)
 	else:
-		score_arr.append(0)
+		score_arr.append(1)
 	
 
 func checkScores(scores : Array):
@@ -35,14 +33,14 @@ func checkScores(scores : Array):
 	for score in scores:
 		lowest = min(score, lowest)
 		highest = max(score, highest)
-	
+	print('lowest this: ' + str(lowest))
 	match lowest:
 		3:
-			recipe.order.set_reward_type("big")
+			set_reward_type("big")
 		2:
-			recipe.order.set_reward_type("med")
+			set_reward_type("med")
 		1:
-			recipe.order.set_reward_type("basic")
+			set_reward_type("basic")
 				
 				
 

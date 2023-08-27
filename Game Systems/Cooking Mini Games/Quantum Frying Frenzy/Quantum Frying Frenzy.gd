@@ -15,13 +15,11 @@ func disable():
 	for meteor in get_children():
 		if meteor is Meteor and meteor.picked_up == false:
 			meteor.input_pickable = false
-			print('disabled')
 
 func enable():
 	for meteor in get_children():
 		if meteor is Meteor and meteor.cooking == false:
 			meteor.input_pickable = true
-			print('enabled')
 
 func process_meteor(area):
 	if area.cooked:

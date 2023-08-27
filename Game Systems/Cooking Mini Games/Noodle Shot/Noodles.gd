@@ -18,7 +18,6 @@ func _ready():
 		set_modulate(Color(1, 0.5, 0.5, 1))
 
 func drop(viewport, event , shape_idx):
-	print(event)
 	if event is InputEventMouseButton:
 		direction = "DOWN"
 

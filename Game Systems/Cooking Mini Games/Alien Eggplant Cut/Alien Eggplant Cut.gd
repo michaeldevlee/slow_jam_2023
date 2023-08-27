@@ -43,7 +43,6 @@ func _unhandled_input(event):
 	
 	if event is InputEventMouseMotion:
 		if drawing and circle.shape.radius < 25:
-			print(event.speed)
 			circle.shape.radius += 4
 			
 			var target_scale = circle.shape.radius / original_collision_radius

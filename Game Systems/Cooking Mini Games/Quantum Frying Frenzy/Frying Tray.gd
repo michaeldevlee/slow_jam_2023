@@ -18,7 +18,6 @@ func _ready():
 
 func check_if_ready_to_cook(area):
 	if area is Meteor and free:
-		print(area)
 		area.can_cook = true
 		meteor = area
 		
@@ -36,16 +35,13 @@ func start_cooking(meteor):
 		meteor.cooking = true
 		timer.start()
 		meteor.input_pickable = false
-		print('started cooking')
 	
 
 func notify_done_cooking():
 	self.free = true
 	self.cooking = false
 	collider.disabled = false
-	meteor.emit_signal("done_cooking")
 	meteor.input_pickable = true
 	meteor.cooking = false
 	meteor.cooked = true
 	meteor = null	
-	print("done")

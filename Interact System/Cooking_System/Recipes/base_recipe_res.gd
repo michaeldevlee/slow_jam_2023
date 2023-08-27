@@ -18,14 +18,19 @@ export var big_reward : int
 var reward_type
 var reward : int 
 
+var submitted_ingredient_count : int = 0
+
 func set_reward_type(type):
+	var multiplier = submitted_ingredient_count / required_ingredients.size()
+	
+	reward_type = type
 	match type:
 		"basic":
-			reward = basic_reward
+			reward = basic_reward * multiplier
 		"medium":
-			reward = med_reward
+			reward = med_reward * multiplier
 		"big":
-			reward = big_reward
+			reward = big_reward * multiplier
 
 
 
