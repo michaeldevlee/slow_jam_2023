@@ -45,3 +45,6 @@ func notify_done_cooking():
 	meteor.cooking = false
 	meteor.cooked = true
 	meteor = null	
+
+func cleanup():
+	timer.stop()

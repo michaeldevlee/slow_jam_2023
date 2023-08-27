@@ -4,6 +4,8 @@ var selected : bool = false
 var selection_points 
 var count = 0
 
+signal cut_off
+
 func _ready():
 	selection_points = get_children().size()
 	

@@ -16,6 +16,9 @@ quantum_batter = ExtResource( 9 )
 rusty_meatball = ExtResource( 8 )
 last_level = 5
 
+[node name="Timer" parent="." index="1"]
+wait_time = 10.0
+
 [node name="Rotten Meteor Marinara" type="TextureButton" parent="." index="2"]
 margin_left = 64.0
 margin_top = 96.0

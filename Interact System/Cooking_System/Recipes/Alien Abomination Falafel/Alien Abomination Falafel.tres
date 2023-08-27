@@ -4,7 +4,7 @@
 [ext_resource path="res://Interact System/Cooking_System/Recipes/base_recipe_res.gd" type="Script" id=2]
 [ext_resource path="res://Assets/UI/Icon_Recipe_AlienAbomFalafel.png" type="Texture" id=3]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Rusty Meatballs/Rusty Meatballs.tres" type="Resource" id=4]
-[ext_resource path="res://Game Systems/Cooking Mini Games/Rusty MeatBall Squashing/Rusty MeatBall Squashing.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Game Systems/Cooking Mini Games/Alien Eggplant Cut/Alien Eggplant Cut.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Slimy Seaweed Wrap/Slimy Seaweed Wrap.tres" type="Resource" id=6]
 [ext_resource path="res://Assets/UI/Icon_Recipe_AlienAbomFalafel_22x22.png" type="Texture" id=7]
 
@@ -19,6 +19,6 @@ name = "Alien Abomination Falafel"
 icon = ExtResource( 3 )
 mini_icon = ExtResource( 7 )
 mini_game = ExtResource( 5 )
-basic_reward = 1
-med_reward = 2
-big_reward = 3
+basic_reward = 100
+med_reward = 200
+big_reward = 400

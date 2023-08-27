@@ -2,6 +2,7 @@ extends MiniGame
 
 onready var ingredients_board = get_node("IngredientsBoard")
 onready var ingredients_root = get_node("IngredientsBoard/MarginContainer/HFlowContainer")
+onready var timer = get_node("Timer")
 
 export var rotten_meteor_marinara : Resource
 export var quantum_batter : Resource 
@@ -10,6 +11,8 @@ export var rusty_meatball : Resource
 export var last_level = 2
 
 signal level_completed
+
+var score : int = 0
 
 var ingredients = []
 
@@ -28,6 +31,7 @@ func _ready():
 	]
 	connect_buttons()
 	load_level(level)
+	timer.connect("timeout", self, "end_mini_game")
 
 func load_level(level_number):
 	if level_number < last_level:
@@ -59,13 +63,25 @@ func disable_buttons():
 func add(ingredient):	
 	if ingredient.name == ingredients_root.get_children()[0].ingredient.name:
 		ingredients_root.get_children()[0].set_modulate(Color(1,1,1,0.4))
-		ingredients_root.remove_child(ingredients_root.get_child(0))	
-		
+		ingredients_root.remove_child(ingredients_root.get_child(0))
+		score += 1	
 	else:
-		print('wrong1')
+		score -= 1
 	if ingredients_root.get_children().size() == 0:
 		print('end round')
+		print('your score is '+ str(score))
 		level += 1
 		load_level(level)
-		
+
+func check_score(score):
+	if score > 18:
+		set_reward_type("big")
+	elif score > 13:
+		set_reward_type("medium")
+	else:
+		set_reward_type("basic")
+
+func end_mini_game():
+	check_score(score)
+	notify_mini_game_ended()
 

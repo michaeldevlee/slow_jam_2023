@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Game Systems/ScavengeSystem.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -11,9 +11,7 @@
 [ext_resource path="res://Interact System/Scavenge_System/VendingMachine.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Scraphead Noodle/Scraphead Noodles.tres" type="Resource" id=10]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Rusty Meatballs/Rusty Meatballs.tres" type="Resource" id=11]
-[ext_resource path="res://Interact System/Scavenge_System/Collectibles/Rotten Meteor Marinara/Rotten Meteor Marinara.tres" type="Resource" id=12]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Quantum Batter/Quantum Batter.tres" type="Resource" id=13]
-[ext_resource path="res://Interact System/Scavenge_System/Collectibles/Alien Eggplant/Alien Eggplant.tres" type="Resource" id=14]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -199,17 +197,25 @@ ingredient_in_machine = ExtResource( 10 )
 position = Vector2( -352, 684 )
 ingredient_in_machine = ExtResource( 10 )
 
-[node name="VendingMachine16" parent="VendingMachines" instance=ExtResource( 9 )]
-position = Vector2( 256, 140 )
-ingredient_in_machine = ExtResource( 14 )
-
-[node name="VendingMachine17" parent="VendingMachines" instance=ExtResource( 9 )]
-position = Vector2( 272, 100 )
-ingredient_in_machine = ExtResource( 13 )
-
 [node name="VendingMachine18" parent="VendingMachines" instance=ExtResource( 9 )]
 position = Vector2( 256, 60 )
-ingredient_in_machine = ExtResource( 12 )
+ingredient_in_machine = ExtResource( 13 )
+
+[node name="VendingMachine25" parent="VendingMachines" instance=ExtResource( 9 )]
+position = Vector2( 280, 84 )
+ingredient_in_machine = ExtResource( 13 )
+
+[node name="VendingMachine26" parent="VendingMachines" instance=ExtResource( 9 )]
+position = Vector2( 264, 124 )
+ingredient_in_machine = ExtResource( 13 )
+
+[node name="VendingMachine27" parent="VendingMachines" instance=ExtResource( 9 )]
+position = Vector2( 224, 108 )
+ingredient_in_machine = ExtResource( 13 )
+
+[node name="VendingMachine28" parent="VendingMachines" instance=ExtResource( 9 )]
+position = Vector2( 240, 156 )
+ingredient_in_machine = ExtResource( 13 )
 
 [node name="VendingMachine19" parent="VendingMachines" instance=ExtResource( 9 )]
 position = Vector2( 216, 44 )

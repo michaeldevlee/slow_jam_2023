@@ -12,29 +12,21 @@ extents = Vector2( 20, 20 )
 [node name="Quantum Frying Frenzy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="Meteor2" parent="." index="2" instance=ExtResource( 3 )]
-position = Vector2( 168, 64 )
+[node name="Timer" parent="." index="1"]
+wait_time = 10.0
+autostart = true
 
-[node name="Meteor3" parent="." index="3" instance=ExtResource( 3 )]
-position = Vector2( 168, 64 )
-
-[node name="Meteor4" parent="." index="4" instance=ExtResource( 3 )]
-position = Vector2( 168, 64 )
-
-[node name="Meteor" parent="." index="5" instance=ExtResource( 3 )]
-position = Vector2( 120, 80 )
-
-[node name="Frying Tray" parent="." index="6" instance=ExtResource( 4 )]
+[node name="Frying Tray" parent="." index="2" instance=ExtResource( 4 )]
 position = Vector2( 192, 128 )
 
-[node name="Frying Tray2" parent="." index="7" instance=ExtResource( 4 )]
-position = Vector2( 40, 96 )
+[node name="Frying Tray2" parent="." index="3" instance=ExtResource( 4 )]
+position = Vector2( 32, 120 )
 
-[node name="Frying Tray3" parent="." index="8" instance=ExtResource( 4 )]
-position = Vector2( 112, 32 )
+[node name="Frying Tray3" parent="." index="4" instance=ExtResource( 4 )]
+position = Vector2( 112, 120 )
 
-[node name="Done_Pile" type="Area2D" parent="." index="9"]
-position = Vector2( 40, 32 )
+[node name="Done_Pile" type="Area2D" parent="." index="5"]
+position = Vector2( 32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Done_Pile" index="0"]
 shape = SubResource( 1 )
@@ -42,3 +34,36 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="Done_Pile" index="1"]
 z_index = -1
 texture = ExtResource( 5 )
+
+[node name="Meteor" parent="." index="6" instance=ExtResource( 3 )]
+position = Vector2( 176, 32 )
+
+[node name="Meteor2" parent="." index="7" instance=ExtResource( 3 )]
+position = Vector2( 192, 24 )
+
+[node name="Meteor3" parent="." index="8" instance=ExtResource( 3 )]
+position = Vector2( 192, 40 )
+
+[node name="Meteor4" parent="." index="9" instance=ExtResource( 3 )]
+position = Vector2( 152, 40 )
+
+[node name="Meteor5" parent="." index="10" instance=ExtResource( 3 )]
+position = Vector2( 152, 24 )
+
+[node name="Meteor6" parent="." index="11" instance=ExtResource( 3 )]
+position = Vector2( 224, 32 )
+
+[node name="Meteor7" parent="." index="12" instance=ExtResource( 3 )]
+position = Vector2( 216, 48 )
+
+[node name="Meteor8" parent="." index="13" instance=ExtResource( 3 )]
+position = Vector2( 120, 24 )
+
+[node name="Meteor9" parent="." index="14" instance=ExtResource( 3 )]
+position = Vector2( 136, 40 )
+
+[node name="Meteor10" parent="." index="15" instance=ExtResource( 3 )]
+position = Vector2( 112, 48 )
+
+[node name="Meteor11" parent="." index="16" instance=ExtResource( 3 )]
+position = Vector2( 112, 48 )

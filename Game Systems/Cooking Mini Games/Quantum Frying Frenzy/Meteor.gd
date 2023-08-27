@@ -1,9 +1,12 @@
 extends Selectable
 class_name Meteor
 
+onready var anim_player = get_node("AnimationPlayer")
+onready var done_label = get_node("Label")
+
 var picked_up : bool = false
 var can_cook : bool = false
-var cooked : bool = false
+var cooked : bool = false setget display_done
 var cooking : bool = false
 var frying_pan 
 
@@ -44,7 +47,11 @@ func handleDrop():
 func _unhandled_input(event):
 	if Input.is_action_just_released("mouse_interact") and picked_up:
 		handleDrop()
-	
+
+func display_done(val):
+	anim_player.play("Done")
+	cooked = val
+
 func cleanup():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	picked_up = false

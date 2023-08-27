@@ -15,6 +15,7 @@ const MAX_VERT_DISTANCE = 200
 
 var already_put_down = false
 
+
 signal reset_mouse
 
 func _ready():
@@ -37,17 +38,18 @@ func handleSelect():
 		wrap.global_position = wrap.global_position + new_position
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.is_action_pressed("mouse_interact") and can_interact:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		selected = true
-	elif event is InputEventMouseButton and event.is_action_released("mouse_interact"):
-		already_put_down = true
-		selected = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		wrap.emit_signal("wrap_placed")
-		queue_free()
-	elif event is InputEventMouseMotion and selected:
-		new_position = event.relative
+	if can_interact:
+		if event is InputEventMouseButton and event.is_action_pressed("mouse_interact"):
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			selected = true
+		elif event is InputEventMouseButton and event.is_action_released("mouse_interact") :
+			already_put_down = true
+			selected = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			wrap.emit_signal("wrap_placed")
+			queue_free()
+		elif event is InputEventMouseMotion and selected:
+			new_position = event.relative
 		
 func _process(delta):
 	handleSelect()

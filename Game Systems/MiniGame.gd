@@ -8,6 +8,7 @@ export (String, "None", "Rusty Relish", "Slimey Broth Reduction", " Scrapheap Sa
 
 func notify_mini_game_ended():
 	InteractEventBus.emit_signal("mini_game_ended", recipe)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	queue_free()
 
 func set_reward_type(type):
