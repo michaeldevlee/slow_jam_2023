@@ -22,6 +22,7 @@ var order_count = 0
 func init():
 	customer_timer.wait_time = 3
 	customer_timer.start()
+	AudioEngine.playBG(AudioEngine.cooking_music)
 	
 
 func _ready():

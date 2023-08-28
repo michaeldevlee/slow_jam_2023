@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Nightime Sneak.wav-3549898f0c9f4ff54cceeb2732b950e3.sample"
+
+[deps]
+
+source_file="res://Audio/Nightime Sneak.wav"
+dest_files=[ "res://.import/Nightime Sneak.wav-3549898f0c9f4ff54cceeb2732b950e3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

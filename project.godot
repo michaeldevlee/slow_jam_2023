@@ -113,6 +113,7 @@ config/icon="res://icon.png"
 InteractEventBus="*res://Interact System/InteractEventBus.tscn"
 Inventory="*res://Inventory System/Inventory.tscn"
 GameState="*res://Game State System/GameState.tscn"
+AudioEngine="*res://Audio System/AudioEngine.tscn"
 
 [display]
 

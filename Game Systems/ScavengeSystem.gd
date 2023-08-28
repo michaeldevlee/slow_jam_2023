@@ -17,6 +17,7 @@ func init():
 	camera.limit_top = -10000000
 	camera.player = player
 	player.global_position = player_start_position.global_position
+	AudioEngine.playBG(AudioEngine.scavenging_music)
 func cleanup():
 	set_process_input(false)	
 	set_process(false)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/siren.mp3-33f7bff773eccedcf9b8b4e05f206210.mp3str"
+
+[deps]
+
+source_file="res://Audio/siren.mp3"
+dest_files=[ "res://.import/siren.mp3-33f7bff773eccedcf9b8b4e05f206210.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
