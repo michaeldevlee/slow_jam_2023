@@ -39,6 +39,7 @@ func _ready():
 func recipe_init(customer_action : Customer):
 	if customer_action.order is Recipe_Order and order_count < max_order_count:
 		order_count += 1
+		print('giving orders')
 		var recipe_instance : Recipe = recipe_scene.instance()
 		recipe_instance.order = customer_action.order
 		recipe_instance.customer = customer_action
@@ -90,6 +91,7 @@ func reset_customers():
 	customer_timer.stop()
 func cleanup():
 	close_navbar()
+	order_count = 0
 	navbar.cleanup_navbar()
 	modal.exit()
 	reset_customers()

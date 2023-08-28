@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://icon_16x16.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/SpriteSheet_Racoon.png" type="Texture" id=1]
 [ext_resource path="res://Interact System/Selectable.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/player_interact.gd" type="Script" id=4]
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends KinematicBody2D
+
+onready var anim_player = get_node(\"AnimationPlayer\")
+onready var sprite = get_node(\"Sprite\")
 
 export var speed = 150
 var velocity = Vector2()
@@ -19,12 +22,19 @@ func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed('ui_right'):
 		velocity.x += 1
+		anim_player.play(\"Run_Side\")
+		sprite.flip_h = false		
 	if Input.is_action_pressed('ui_left'):
+		sprite.flip_h = true
 		velocity.x -= 1
+		anim_player.play(\"Run_Side\")		
 	if Input.is_action_pressed('ui_down'):
 		velocity.y += 1
+		anim_player.play(\"Run_Down\")		
 	if Input.is_action_pressed('ui_up'):
 		velocity.y -= 1
+		anim_player.play(\"Run_Up\")		
+		
 	velocity = velocity.normalized() * speed
 
 
@@ -41,6 +51,72 @@ func _physics_process(delta):
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
 
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Run_Down"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 32, 32 ), Rect2( 0, 32, 32, 32 ), Rect2( 0, 64, 32, 32 ), Rect2( 0, 32, 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Run_Side"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 32, 0, 32, 32 ), Rect2( 32, 32, 32, 32 ), Rect2( 32, 64, 32, 32 ), Rect2( 32, 32, 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Run_Up"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 64, 0, 32, 32 ), Rect2( 64, 32, 32, 32 ), Rect2( 64, 64, 32, 32 ), Rect2( 64, 32, 32, 32 ) ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 script = SubResource( 3 )
 
@@ -49,9 +125,18 @@ shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Selectable" parent="." instance=ExtResource( 3 )]
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Selectable"]
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Run_Down"
+anims/RESET = SubResource( 6 )
+anims/Run_Down = SubResource( 5 )
+anims/Run_Side = SubResource( 7 )
+anims/Run_Up = SubResource( 8 )
