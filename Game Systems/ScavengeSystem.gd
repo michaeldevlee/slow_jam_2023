@@ -6,7 +6,7 @@ onready var player = get_node("Player")
 onready var player_start_position = get_node("Player Start Position")
 
 func _ready():
-	init()
+	pass
 
 func init():
 	set_process_input(true)
@@ -21,7 +21,9 @@ func init():
 func cleanup():
 	set_process_input(false)	
 	set_process(false)
+	get_tree().call_group("Mall_Cop", "reset_position")
 	player.canMove = false
+	player.global_position = player_start_position.global_position
 	camera.player = null
 	camera.limit_left = 0
 	camera.limit_top = 0

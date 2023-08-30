@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Game Systems/CookingSystem.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -15,6 +15,98 @@
 [ext_resource path="res://Game Systems/ActionChange.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/Level/Background_StallFloor.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Level/Background_Stall.png" type="Texture" id=15]
+[ext_resource path="res://Assets/UI/Button_OrderOpen.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Level/Background_Customer.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/SpriteSheet_Racoon.png" type="Texture" id=18]
+[ext_resource path="res://Game Systems/Highlight.gd" type="Script" id=19]
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 18 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 18 )
+region = Rect2( 32, 64, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Shader" id=16]
+code = "shader_type canvas_item;
+
+uniform vec4 color : hint_color = vec4(1.0);
+uniform float width : hint_range(0, 10) = 1.0;
+uniform int pattern : hint_range(0, 2) = 0; // diamond, circle, square
+uniform bool inside = false;
+uniform bool add_margins = true; // only useful when inside is false
+
+void vertex() {
+	if (add_margins) {
+		VERTEX += (UV * 2.0 - 1.0) * width;
+	}
+}
+
+bool hasContraryNeighbour(vec2 uv, vec2 texture_pixel_size, sampler2D texture) {
+	for (float i = -ceil(width); i <= ceil(width); i++) {
+		float x = abs(i) > width ? width * sign(i) : i;
+		float offset;
+		
+		if (pattern == 0) {
+			offset = width - abs(x);
+		} else if (pattern == 1) {
+			offset = floor(sqrt(pow(width + 0.5, 2) - x * x));
+		} else if (pattern == 2) {
+			offset = width;
+		}
+		
+		for (float j = -ceil(offset); j <= ceil(offset); j++) {
+			float y = abs(j) > offset ? offset * sign(j) : j;
+			vec2 xy = uv + texture_pixel_size * vec2(x, y);
+			
+			if ((xy != clamp(xy, vec2(0.0), vec2(1.0)) || texture(texture, xy).a == 0.0) == inside) {
+				return true;
+			}
+		}
+	}
+	
+	return false;
+}
+
+void fragment() {
+	vec2 uv = UV;
+	
+	if (add_margins) {
+		vec2 texture_pixel_size = vec2(1.0) / (vec2(1.0) / TEXTURE_PIXEL_SIZE + vec2(width * 2.0));
+		
+		uv = (uv - texture_pixel_size * width) * TEXTURE_PIXEL_SIZE / texture_pixel_size;
+		
+		if (uv != clamp(uv, vec2(0.0), vec2(1.0))) {
+			COLOR.a = 0.0;
+		} else {
+			COLOR = texture(TEXTURE, uv);
+		}
+	} else {
+		COLOR = texture(TEXTURE, uv);
+	}
+	
+	if ((COLOR.a > 0.0) == inside && hasContraryNeighbour(uv, TEXTURE_PIXEL_SIZE, TEXTURE)) {
+		COLOR.rgb = inside ? mix(COLOR.rgb, color.rgb, color.a) : color.rgb;
+		COLOR.a += (1.0 - COLOR.a) * color.a;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = SubResource( 16 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 1.0
+shader_param/pattern = 0
+shader_param/inside = false
+shader_param/add_margins = true
 
 [sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 12 )
@@ -155,11 +247,17 @@ tracks/1/keys = {
 "values": [ Vector2( 160, 0 ), Vector2( 64, 0 ) ]
 }
 
+[sub_resource type="DynamicFont" id=14]
+font_data = ExtResource( 12 )
+
 [sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 12 )
 
 [sub_resource type="Theme" id=9]
 default_font = SubResource( 8 )
+
+[sub_resource type="DynamicFont" id=15]
+font_data = ExtResource( 12 )
 
 [node name="CookingSystem" type="Node2D"]
 z_index = 1
@@ -176,44 +274,52 @@ mouse_filter = 2
 texture = ExtResource( 14 )
 
 [node name="Stall" type="TextureRect" parent="BlockOut/PlayerArea"]
-margin_left = 32.0
-margin_right = 192.0
+margin_left = 8.0
+margin_right = 168.0
 margin_bottom = 180.0
 mouse_filter = 2
 texture = ExtResource( 15 )
 
-[node name="CustomerArea" type="ColorRect" parent="BlockOut"]
-show_behind_parent = true
+[node name="AnimatedSprite" type="AnimatedSprite" parent="BlockOut/PlayerArea"]
+position = Vector2( 108, 116 )
+frames = SubResource( 11 )
+frame = 1
+playing = true
+
+[node name="CustomerArea" type="TextureRect" parent="BlockOut"]
 margin_left = 160.0
 margin_right = 320.0
 margin_bottom = 180.0
 rect_pivot_offset = Vector2( 96, 88 )
 mouse_filter = 2
-color = Color( 0.333333, 0, 0.917647, 1 )
+texture = ExtResource( 17 )
 
 [node name="Customers" type="Node2D" parent="BlockOut/CustomerArea"]
 
 [node name="Customer Start Point" type="Node2D" parent="BlockOut/CustomerArea"]
-position = Vector2( 88, -8 )
+position = Vector2( 72, -8 )
 
 [node name="DirectionChange" parent="BlockOut/CustomerArea" instance=ExtResource( 13 )]
-position = Vector2( 88, 152 )
+position = Vector2( 68, 152 )
 
 [node name="DirectionChange2" parent="BlockOut/CustomerArea" instance=ExtResource( 13 )]
-position = Vector2( 8, 48 )
+position = Vector2( -12, 48 )
 action = "STOP"
 
 [node name="KitchenAction" parent="BlockOut/CustomerArea" instance=ExtResource( 13 )]
-position = Vector2( -16, 128 )
+position = Vector2( -28, 128 )
 action = "SIGNAL"
 
 [node name="Slide Out Button" type="TextureButton" parent="BlockOut/CustomerArea"]
-margin_left = 136.0
-margin_top = 8.0
-margin_right = 200.0
-margin_bottom = 72.0
+material = SubResource( 17 )
+margin_left = 140.0
+margin_top = 4.0
+margin_right = 204.0
+margin_bottom = 68.0
 rect_scale = Vector2( 0.25, 0.25 )
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 16 )
+expand = true
+script = ExtResource( 19 )
 
 [node name="Navbar" type="TextureRect" parent="BlockOut/CustomerArea"]
 margin_left = 160.0
@@ -274,9 +380,10 @@ anchor_left = 0.5
 anchor_right = 0.5
 margin_left = 184.0
 margin_top = 104.0
-margin_right = 258.0
-margin_bottom = 152.0
+margin_right = 276.0
+margin_bottom = 158.0
 rect_pivot_offset = Vector2( 88, 120 )
+custom_fonts/font = SubResource( 14 )
 text = "Big Reward!
 +100
 "
@@ -436,3 +543,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 168, 88 )
+texture = ExtResource( 3 )
+
+[node name="Label2" type="Label" parent="CanvasLayer/Sprite"]
+margin_left = -108.0
+margin_top = -60.0
+margin_right = 96.0
+margin_bottom = -6.0
+custom_fonts/font = SubResource( 15 )
+text = "- Cooking Mode -
+   Mouse left click / drag -    interact"
+autowrap = true
+
+[node name="Label3" type="Label" parent="CanvasLayer/Sprite"]
+margin_left = -108.0
+margin_top = 4.0
+margin_right = 116.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 15 )
+text = "- Scavenge Mode -
+    Arrow keys - move
+    Mouse left click - interact"
+autowrap = true
+
+[connection signal="mouse_entered" from="BlockOut/CustomerArea/Slide Out Button" to="BlockOut/CustomerArea/Slide Out Button" method="_on_Slide_Out_Button_mouse_entered"]

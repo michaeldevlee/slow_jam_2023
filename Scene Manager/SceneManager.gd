@@ -3,7 +3,7 @@ extends Node2D
 onready var cookingSystem = get_node("CookingSystem")
 onready var scavengeSystem = get_node("ScavengeSystem")
 onready var animPlayer = get_node("AnimationPlayer")
-
+onready var controls = get_node("Controls")
 
 var curr_scene : Node2D 
 var next_scene : Node2D
@@ -24,7 +24,7 @@ func _ready():
 	cookingSystem.connect("visibility_changed", self, "getScene", [cookingSystem])
 	scavengeSystem.connect("visibility_changed", self, "getScene", [scavengeSystem])
 	
-	var scenes = [cookingSystem, scavengeSystem]
+	var scenes = [scavengeSystem, cookingSystem]
 	
 	curr_scene = cookingSystem
 	next_scene = scavengeSystem
@@ -35,7 +35,7 @@ func _ready():
 	scenes[0].visible = true
 
 func getScene(scene):
-	if cookingSystem.visible == true:
+	if cookingSystem.visible == true:	
 		var event = {
 			"message" : "Time to start cooking!",
 			"ingredient" : null
@@ -53,4 +53,9 @@ func getScene(scene):
 		InteractEventBus.emit_signal("pop_up_event_started", event)
 		scavengeSystem.init()
 		cookingSystem.cleanup()
+	
+
+func _process(delta):
+	if Input.is_action_just_pressed("ui_home"):
+		controls.visible = !controls.visible
 	

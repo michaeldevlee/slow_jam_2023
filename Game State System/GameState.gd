@@ -24,6 +24,7 @@ func update_inventory_state(ingredient):
 			"ingredient" : ingredient
 		}
 		InteractEventBus.emit_signal("pop_up_event_started", event)
+		AudioEngine.playSFX(AudioEngine.just_item)
 		unlocked_ingredients.append(ingredient)
 		update_available_recipes()
 
@@ -44,6 +45,7 @@ func update_available_recipes():
 					"ingredient" : recipe
 					}
 				InteractEventBus.emit_signal("pop_up_event_started", event)
+				AudioEngine.playSFX(AudioEngine.new_item)				
 				unlocked_recipes.append(recipe)
 
 

@@ -19,6 +19,7 @@ func _ready():
 
 func drop(viewport, event , shape_idx):
 	if event is InputEventMouseButton:
+		AudioEngine.playSFX(AudioEngine.shrink)
 		direction = "DOWN"
 
 func move(direction, delta):

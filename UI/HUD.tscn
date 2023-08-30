@@ -170,3 +170,9 @@ autoplay = "Open"
 anims/Close = SubResource( 3 )
 anims/Open = SubResource( 1 )
 anims/RESET = SubResource( 2 )
+
+[node name="DisplayTime" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 160.0
+margin_right = 48.0
+margin_bottom = 174.0

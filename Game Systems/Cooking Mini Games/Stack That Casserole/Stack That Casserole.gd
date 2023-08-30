@@ -32,6 +32,7 @@ func _ready():
 	connect_buttons()
 	load_level(level)
 	timer.connect("timeout", self, "end_mini_game")
+	timer.start()
 
 func load_level(level_number):
 	if level_number < last_level:
@@ -44,6 +45,7 @@ func load_level(level_number):
 			ingredients_root.add_child(ing_instance)
 	else:
 		disable_buttons()
+		end_mini_game()
 		
 	
 func clear_ingredients_board():
@@ -65,13 +67,18 @@ func add(ingredient):
 		ingredients_root.get_children()[0].set_modulate(Color(1,1,1,0.4))
 		ingredients_root.remove_child(ingredients_root.get_child(0))
 		score += 1	
+		AudioEngine.playSFX(AudioEngine.open_inv)
 	else:
 		score -= 1
+		AudioEngine.playSFX(AudioEngine.close_inv)
 	if ingredients_root.get_children().size() == 0:
 		print('end round')
 		print('your score is '+ str(score))
 		level += 1
+		
 		load_level(level)
+		
+		
 
 func check_score(score):
 	if score > 18:

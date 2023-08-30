@@ -28,6 +28,7 @@ func disconnect_meteor(area):
 
 func start_cooking(meteor):
 	if !cooking and free:
+		AudioEngine.playSFX(AudioEngine.sizzle)
 		collider.disabled = true
 		self.free = false
 		self.meteor = meteor

@@ -7,6 +7,7 @@ onready var texture = get_node("VBoxContainer/HBoxContainer/TextureRect/HBoxCont
 onready var close_button = get_node("VBoxContainer/HBoxContainer/TextureRect/HBoxContainer/VBoxContainer/CloseButton")
 onready var anim_player = get_node("AnimationPlayer")
 onready var money_display = get_node("Label")
+onready var time_display = get_node("DisplayTime")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,6 +18,7 @@ func _ready():
 
 
 func skip_current_state():
+	AudioEngine.playSFX(AudioEngine.give_up, 0)
 	InteractEventBus.emit_signal("skip_initiated")
 
 func pop_up(event):
@@ -35,3 +37,5 @@ func close():
 	texture.texture = null
 	get_tree().paused = false
 	
+func process(delta):
+	time_display.set_text()

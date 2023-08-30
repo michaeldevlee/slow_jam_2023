@@ -12,12 +12,14 @@ onready var customer_spawn_point = get_node("BlockOut/CustomerArea/Customer Star
 onready var customer_area = get_node("BlockOut/CustomerArea/Customers")
 onready var score_display = get_node("Label")
 
+
 var recipe_scene = preload("res://Game Systems/Recipe.tscn")
 var customer_scene = preload("res://Game Systems/Customer.tscn")
 
 var max_order_count = 3
 var order_count = 0
 
+var curr_recipe
 
 func init():
 	customer_timer.wait_time = 3
@@ -31,7 +33,6 @@ func _ready():
 	navbar.connect("navbar_exited", self, "close_navbar")
 	InteractEventBus.connect("mini_game_ended", self, "process_mini_game")
 	customer_timer.connect("timeout", self, "spawn_customer")
-	
 	init()
 	
 	if customer_arrival_point.action == "SIGNAL":
@@ -44,6 +45,7 @@ func recipe_init(customer_action : Customer):
 		var recipe_instance : Recipe = recipe_scene.instance()
 		recipe_instance.order = customer_action.order
 		recipe_instance.customer = customer_action
+		curr_recipe = recipe_instance
 		navbar.order_init(recipe_instance)
 		customer_action.changeDirectionTo(Vector2(0, -16), "UP")
 		customer_action.busy = false
@@ -69,10 +71,12 @@ func close_navbar():
 
 func process_mini_game(finished_recipe : Recipe):
 	var recipe_resource = finished_recipe.order
-	finished_recipe.customer.queue_free()
+	curr_recipe.customer.queue_free()
 	modal.exit()
+	AudioEngine.playSFX(AudioEngine.sale)
 	Inventory.money += recipe_resource.reward
 	score_display.set_text(recipe_resource.reward_type + " reward \n" + "+" + str(recipe_resource.reward) )
+	InteractEventBus.emit_signal("check_if_game_over")
 	anim_plyer.play("display_score")
 	finished_recipe.queue_free()
 	open_order_slot()
@@ -103,3 +107,5 @@ func _process(delta):
 			open_navbar()
 		else:
 			close_navbar()	
+	
+	

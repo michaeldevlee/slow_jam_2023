@@ -47,7 +47,7 @@ func _unhandled_input(event):
 		if drawing and circle.shape.radius < 25:
 			circle.shape.radius += 4
 			
-			var target_scale = circle.shape.radius / original_collision_radius
+			var target_scale = circle.shape.radius / original_collision_radius * 0.7
 			
 			circle_sprite.scale = Vector2(target_scale,target_scale)
 

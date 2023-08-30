@@ -13,6 +13,7 @@ func _ready():
 
 func interact():
 	Inventory.add(ingredient)
+	
 	queue_free()
 		
 

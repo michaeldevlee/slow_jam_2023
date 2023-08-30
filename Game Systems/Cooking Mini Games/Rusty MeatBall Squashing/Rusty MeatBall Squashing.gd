@@ -58,6 +58,7 @@ func end_mini_game():
 
 func shrink(button):
 	button.rect_scale -= Vector2(0.5, 0.5)
+	AudioEngine.playSFX(AudioEngine.shrink)
 
 func _process(delta):
 	$Meatball.rect_scale += Vector2(growth_rate,growth_rate) * delta

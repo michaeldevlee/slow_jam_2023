@@ -6,20 +6,47 @@ onready var minigame_music_player = get_node("MiniGameMusicPlayer")
 
 var cooking_music = preload("res://Audio/Cooking music shop music.wav")
 var scavenging_music = preload("res://Audio/Nightime Sneak.wav")
-var start_menu_music = null
+var start_menu_music = preload("res://Audio/Cooking Theme.mp3")
+var ending_music = preload("res://Audio/funky_space_time.wav")
+
+var close_inv = preload("res://Audio/Close Inventory.wav")
+var open_inv = preload("res://Audio/Open Inventory .wav")
+var meatball_grow = preload("res://Audio/GrowingMeatball2.wav")
+var metaball_grow_2 = preload("res://Audio/Meatball Big.wav")
+var noodle_pull_correct = preload("res://Audio/Noodle Pull Correct.wav")
+var seaweed_wrap = preload("res://Audio/Seaweed Wrap.wav")
+var shrink = preload("res://Audio/Shrinking1.wav")
+var siren = preload("res://Audio/siren.mp3")
+var sizzle = preload("res://Audio/Sizzle1.wav")
+var step = preload("res://Audio/Step.mp3")
+var caught = preload("res://Audio/You're a thief!.wav")
+var sale = preload("res://Audio/Sale.wav")
+var give_up = preload("res://Audio/I_Give_up.wav")
+var digging_trash = preload("res://Audio/digging_through_the_trash.wav")
+var new_item = preload("res://Audio/New_Item.wav")
+var just_item = preload("res://Audio/Just_Item.wav")
+var disgruntled_customer = preload("res://Audio/Bad_Service.wav")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-func playSFX(stream : AudioStream):
+func playSFX(stream : AudioStream, volume : int = -10):
 	sfx_player.stream = stream
+	sfx_player.volume_db = volume
 	sfx_player.play()
 
-func playBG(stream : AudioStream):
+func playBG(stream : AudioStream, volume : int = -5):
 	music_player.stream = stream
+	sfx_player.volume_db = volume	
 	music_player.play()
 
-func playMiniGameMusic(stream : AudioStream):
+func playMiniGameMusic(stream : AudioStream, volume : int = -5):
 	minigame_music_player.stream = stream
+	sfx_player.volume_db = volume	
 	minigame_music_player.play()
+
+func stop_all():
+	sfx_player.stop()
+	music_player.stop()
+	minigame_music_player.stop()

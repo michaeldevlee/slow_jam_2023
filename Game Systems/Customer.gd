@@ -3,15 +3,20 @@ class_name Customer
 
 onready var cast = get_node("RayCast2D")
 onready var timer = get_node("Timer")
+onready var anim_player = get_node("AnimationPlayer")
+onready var sprite = get_node("Sprite")
+
 export var canMove = false
 export (String, "UP", "DOWN", "RIGHT", "LEFT") var direction = "DOWN"
 
+var customer_type
 var rng = RandomNumberGenerator.new()
 var busy = false
 var order
 var speed = 0.4
 
 func _ready():
+	customer_type = rng.randi_range(0,1)
 	timer.connect("timeout", self, "getMad")
 	if GameState.unlocked_ingredients.size() > 0:
 		var limit = GameState.unlocked_recipes.size()-1
@@ -47,16 +52,35 @@ func checkDirectionChange():
 					collider.send_signal(self)
 
 func handleMove():
-	if canMove:
+	if canMove and customer_type == 0:
+		match direction:
+			"UP":
+				anim_player.play("Run_Up")
+				global_position.y -= speed
+			"DOWN":
+				anim_player.play("Run_Down")				
+				global_position.y += speed			
+			"RIGHT":
+				anim_player.play("Run_Side")
+				global_position.x += speed
+				sprite.flip_h = false		
+			"LEFT":
+				anim_player.play("Run_Side")				
+				global_position.x -= speed
+				sprite.flip_h = true
+	if canMove and customer_type == 1:
+		anim_player.play("Expand")
 		match direction:
 			"UP":
 				global_position.y -= speed
 			"DOWN":
 				global_position.y += speed			
 			"RIGHT":
-				global_position.x += speed		
+				global_position.x += speed
+				sprite.flip_h = false		
 			"LEFT":
 				global_position.x -= speed
+				sprite.flip_h = true		
 				
 		
 
