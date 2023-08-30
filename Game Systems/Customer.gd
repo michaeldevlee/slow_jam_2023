@@ -13,9 +13,10 @@ var customer_type
 var rng = RandomNumberGenerator.new()
 var busy = false
 var order
-var speed = 0.4
+var speed = 1
 
 func _ready():
+	rng.randomize()
 	customer_type = rng.randi_range(0,1)
 	timer.connect("timeout", self, "getMad")
 	if GameState.unlocked_ingredients.size() > 0:

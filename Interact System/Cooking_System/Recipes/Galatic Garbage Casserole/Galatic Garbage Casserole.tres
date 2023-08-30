@@ -1,7 +1,6 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Rotten Meteor Marinara/Rotten Meteor Marinara.tres" type="Resource" id=1]
-[ext_resource path="res://Interact System/Scavenge_System/Collectibles/Quantum Batter/Quantum Batter.tres" type="Resource" id=2]
 [ext_resource path="res://Interact System/Scavenge_System/Collectibles/Slimy Seaweed Wrap/Slimy Seaweed Wrap.tres" type="Resource" id=3]
 [ext_resource path="res://Interact System/Cooking_System/Recipes/base_recipe_res.gd" type="Script" id=4]
 [ext_resource path="res://Game Systems/Cooking Mini Games/Stack That Casserole/Stack That Casserole.tscn" type="PackedScene" id=5]
@@ -11,7 +10,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource( 4 )
-required_ingredients = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ) ]
+required_ingredients = [ ExtResource( 1 ), ExtResource( 3 ) ]
 upgrade_combo = {
 }
 enhancers = [  ]

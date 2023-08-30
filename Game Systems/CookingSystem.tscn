@@ -283,6 +283,7 @@ texture = ExtResource( 15 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="BlockOut/PlayerArea"]
 position = Vector2( 108, 116 )
 frames = SubResource( 11 )
+frame = 1
 playing = true
 
 [node name="CustomerArea" type="TextureRect" parent="BlockOut"]
@@ -371,7 +372,7 @@ anims/display_score = SubResource( 10 )
 anims/show_nav_bar = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 20.0
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )
