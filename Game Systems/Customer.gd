@@ -22,7 +22,7 @@ func _ready():
 		var limit = GameState.unlocked_recipes.size()-1
 		rng.randomize()
 		var rand = rng.randi_range(0, limit)
-		order = GameState.unlocked_recipes[rand]
+		order = GameState.unlocked_recipes[rand].duplicate()
 
 func getMad():
 	set_modulate(Color(1,0,0,1))
@@ -50,6 +50,8 @@ func checkDirectionChange():
 			"SIGNAL":
 				if !busy:
 					collider.send_signal(self)
+					print('sending signal')
+					busy = true
 
 func handleMove():
 	if canMove and customer_type == 0:

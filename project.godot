@@ -29,11 +29,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Game Systems/Customer.gd"
 }, {
-"base": "Control",
-"class": "Enhancer",
-"language": "GDScript",
-"path": "res://Interact System/Cooking_System/Enhancers/Enhancer.gd"
-}, {
 "base": "Resource",
 "class": "Enhancer_Resource",
 "language": "GDScript",
@@ -94,7 +89,6 @@ _global_script_class_icons={
 "Collectible": "",
 "CookingSystem": "",
 "Customer": "",
-"Enhancer": "",
 "Enhancer_Resource": "",
 "FryingPan": "",
 "Ingredient": "",

@@ -63,6 +63,7 @@ margin_top = 112.0
 margin_right = 192.0
 margin_bottom = 138.0
 icon = ExtResource( 4 )
+flat = true
 
 [node name="Label" type="Label" parent="Control"]
 anchor_left = 0.5

@@ -23,7 +23,8 @@ func handleFry(body):
 			score += 1
 		else:
 			score -= 1
-	body.queue_free()
+		body.queue_free()
+		
 
 func checkScore(score):
 	if recipe:

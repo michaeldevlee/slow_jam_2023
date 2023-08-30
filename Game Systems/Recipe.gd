@@ -31,6 +31,8 @@ func _ready():
 		
 		
 		recipe_picture_root.add_child(icon_node)
-		
+
+func set_customer(customer):
+	self.customer = customer 
 		
 		

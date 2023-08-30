@@ -19,8 +19,6 @@ var customer_scene = preload("res://Game Systems/Customer.tscn")
 var max_order_count = 3
 var order_count = 0
 
-var curr_recipe
-
 func init():
 	customer_timer.wait_time = 3
 	customer_timer.start()
@@ -38,15 +36,16 @@ func _ready():
 	if customer_arrival_point.action == "SIGNAL":
 		customer_arrival_point.connect("customer_arrived", self, "recipe_init")
 
-func recipe_init(customer_action : Customer):
+func recipe_init(customer_action):
 	if customer_action.order is Recipe_Order and order_count < max_order_count:
 		order_count += 1
 		print('giving orders')
 		var recipe_instance : Recipe = recipe_scene.instance()
-		recipe_instance.order = customer_action.order
-		recipe_instance.customer = customer_action
-		curr_recipe = recipe_instance
 		navbar.order_init(recipe_instance)
+		recipe_instance.order = customer_action.order
+		recipe_instance.set_customer(customer_action)
+		print('the customer is: ')
+		print(customer_action)
 		customer_action.changeDirectionTo(Vector2(0, -16), "UP")
 		customer_action.busy = false
 		
@@ -71,7 +70,7 @@ func close_navbar():
 
 func process_mini_game(finished_recipe : Recipe):
 	var recipe_resource = finished_recipe.order
-	curr_recipe.customer.queue_free()
+	finished_recipe.customer.queue_free()
 	modal.exit()
 	AudioEngine.playSFX(AudioEngine.sale)
 	Inventory.money += recipe_resource.reward

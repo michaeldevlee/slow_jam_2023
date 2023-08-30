@@ -9,6 +9,8 @@ func start(curr_recipe : Recipe):
 	var mini_game : MiniGame = curr_recipe.order.mini_game.instance()
 	mini_game.recipe = curr_recipe
 	mini_game_container.add_child(mini_game)
+	print(curr_recipe.customer)
+	print("LOOK HERE AFTER MINI GAME ENDED")
 	
 
 		
