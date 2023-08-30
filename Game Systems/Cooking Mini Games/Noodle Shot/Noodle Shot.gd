@@ -12,10 +12,12 @@ var noodle = preload("res://Game Systems/Cooking Mini Games/Noodle Shot/Noodles.
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	
 	remove_area.connect("area_entered", self, "remove_noodle")
 	noodle_timer.connect("timeout", self, "spawn_noodle")
 	frying_pan.connect("area_entered", self, "handleFry")
 	game_timer.connect("timeout", self, "end_mini_game")
+
 
 func handleFry(body):
 	if body is Noodle:
@@ -23,8 +25,16 @@ func handleFry(body):
 			score += 1
 		else:
 			score -= 1
+		checkRank(score)
 		body.queue_free()
 		
+func checkRank(score):
+	if score >= 9:
+		update_rank("A")
+	elif score > 5 && score < 9:
+		update_rank("B")
+	else:
+		update_rank("C")
 
 func checkScore(score):
 	if recipe:
@@ -38,7 +48,7 @@ func checkScore(score):
 func spawn_noodle():
 	rng.randomize()
 	var noodle_instance = noodle.instance()
-	noodle_instance.speed = 150
+	noodle_instance.speed = 200
 	
 	noodles_root.add_child(noodle_instance)
 

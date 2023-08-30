@@ -20,6 +20,12 @@
 [ext_resource path="res://Assets/Sprites/SpriteSheet_Racoon.png" type="Texture" id=18]
 [ext_resource path="res://Game Systems/Highlight.gd" type="Script" id=19]
 
+[sub_resource type="DynamicFont" id=18]
+font_data = ExtResource( 12 )
+
+[sub_resource type="Theme" id=19]
+default_font = SubResource( 18 )
+
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 18 )
 region = Rect2( 32, 32, 32, 32 )
@@ -107,12 +113,6 @@ shader_param/width = 1.0
 shader_param/pattern = 0
 shader_param/inside = false
 shader_param/add_margins = true
-
-[sub_resource type="DynamicFont" id=7]
-font_data = ExtResource( 12 )
-
-[sub_resource type="Theme" id=6]
-default_font = SubResource( 7 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -265,6 +265,7 @@ script = ExtResource( 1 )
 
 [node name="BlockOut" type="Control" parent="."]
 mouse_filter = 2
+theme = SubResource( 19 )
 
 [node name="PlayerArea" type="TextureRect" parent="BlockOut"]
 margin_right = 160.0
@@ -283,6 +284,7 @@ texture = ExtResource( 15 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="BlockOut/PlayerArea"]
 position = Vector2( 108, 116 )
 frames = SubResource( 11 )
+frame = 1
 playing = true
 
 [node name="CustomerArea" type="TextureRect" parent="BlockOut"]
@@ -325,7 +327,6 @@ margin_left = 160.0
 margin_right = 256.0
 margin_bottom = 180.0
 mouse_filter = 2
-theme = SubResource( 6 )
 texture = ExtResource( 8 )
 script = ExtResource( 6 )
 recipe_list = NodePath("MarginContainer/HBoxContainer/VBoxContainer")
@@ -350,10 +351,10 @@ margin_bottom = 150.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="BlockOut/CustomerArea/Navbar"]
-margin_left = 28.0
+margin_left = 24.0
 margin_top = 8.0
-margin_right = 68.0
-margin_bottom = 22.0
+margin_right = 78.0
+margin_bottom = 23.0
 text = "Orders"
 
 [node name="Slide Out Button2" type="TextureButton" parent="BlockOut/CustomerArea/Navbar"]

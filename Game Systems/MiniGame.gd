@@ -8,6 +8,7 @@ export (String, "None", "Rusty Relish", "Slimey Broth Reduction", " Scrapheap Sa
 
 onready var timer_display = get_node("Label")
 onready var _timer = get_node("Timer")
+onready var rank_display =get_node("Rank")
 
 func notify_mini_game_ended():
 	InteractEventBus.emit_signal("mini_game_ended", recipe)
@@ -22,7 +23,9 @@ func set_reward_type(type):
 			recipe.order.set_reward_type("medium")
 		"big":
 			recipe.order.set_reward_type("big")
-			
+
+func update_rank(rank):
+	rank_display.set_text(str(rank))
 
 func _process(delta):
 	timer_display.set_text(str("%d" % _timer.time_left))

@@ -1,7 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Game Systems/MiniGame.gd" type="Script" id=1]
 [ext_resource path="res://test_environment_MIKE/Test Assets/240 x 144 Transparent.png" type="Texture" id=2]
+[ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -17,6 +24,7 @@ margin_right = -80.0
 margin_bottom = -36.0
 rect_clip_content = true
 mouse_filter = 2
+theme = SubResource( 5 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 
@@ -33,5 +41,34 @@ anims/display_score = SubResource( 3 )
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Label" type="Label" parent="."]
+margin_left = 48.0
+margin_top = 104.0
+margin_right = 88.0
+margin_bottom = 120.0
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="."]
+margin_top = 104.0
 margin_right = 40.0
-margin_bottom = 14.0
+margin_bottom = 120.0
+text = "Time : "
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="."]
+margin_top = 128.0
+margin_right = 52.0
+margin_bottom = 144.0
+text = "Rank : "
+align = 1
+valign = 1
+
+[node name="Rank" type="Label" parent="."]
+margin_left = 48.0
+margin_top = 128.0
+margin_right = 88.0
+margin_bottom = 144.0
+text = "C"
+align = 1
+valign = 1
