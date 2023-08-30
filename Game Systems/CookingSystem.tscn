@@ -283,7 +283,6 @@ texture = ExtResource( 15 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="BlockOut/PlayerArea"]
 position = Vector2( 108, 116 )
 frames = SubResource( 11 )
-frame = 1
 playing = true
 
 [node name="CustomerArea" type="TextureRect" parent="BlockOut"]

@@ -18,10 +18,11 @@ func _ready():
 		var icon_node = icon.instance()
 		icon_node.type = "RECIPE"
 		icon_node.texture = recipe_texture
-		
+		print(recipe_texture)
 		var req_ingredients = order.required_ingredients
 		
 		for ingredient in req_ingredients:
+			print(ingredient)
 			var ingredient_icon = ingredient.mini_icon
 			var ingredient_node = icon.instance()
 			ingredient_node.type = "INGREDIENT"

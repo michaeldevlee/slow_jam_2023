@@ -20,7 +20,7 @@ var max_order_count = 3
 var order_count = 0
 
 func init():
-	customer_timer.wait_time = 15
+	customer_timer.wait_time = 5
 	customer_timer.start()
 	AudioEngine.playBG(AudioEngine.cooking_music)
 	
@@ -41,9 +41,9 @@ func recipe_init(customer_action):
 		order_count += 1
 		print('giving orders')
 		var recipe_instance : Recipe = recipe_scene.instance()
-		navbar.order_init(recipe_instance)
 		recipe_instance.order = customer_action.order
 		recipe_instance.set_customer(customer_action)
+		navbar.order_init(recipe_instance)
 		print('the customer is: ')
 		print(customer_action)
 		customer_action.changeDirectionTo(Vector2(0, -16), "UP")
