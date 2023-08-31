@@ -11,3 +11,5 @@ signal pop_up_event_started(event)
 signal switch_mode_initiated
 
 signal check_if_game_over
+
+signal tutorial_over

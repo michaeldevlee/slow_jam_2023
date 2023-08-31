@@ -20,6 +20,7 @@ func _ready():
 func skip_current_state():
 	AudioEngine.playSFX(AudioEngine.give_up, 0)
 	InteractEventBus.emit_signal("skip_initiated")
+	InteractEventBus.emit_signal("tutorial_over")
 
 func pop_up(event):
 	get_tree().paused = true

@@ -7,7 +7,8 @@ onready var controls = get_node("Controls")
 
 var curr_scene : Node2D 
 var next_scene : Node2D
-var needsInterupt : bool = false 
+var needsInterupt : bool = false
+
 
 func next():
 	if (!needsInterupt):
@@ -24,7 +25,7 @@ func _ready():
 	cookingSystem.connect("visibility_changed", self, "getScene", [cookingSystem])
 	scavengeSystem.connect("visibility_changed", self, "getScene", [scavengeSystem])
 	
-	var scenes = [scavengeSystem, cookingSystem]
+	var scenes = [cookingSystem, scavengeSystem]
 	
 	curr_scene = cookingSystem
 	next_scene = scavengeSystem
