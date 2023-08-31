@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Game Systems/CookingSystem.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -19,6 +19,10 @@
 [ext_resource path="res://Assets/Level/Background_Customer.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Sprites/SpriteSheet_Racoon.png" type="Texture" id=18]
 [ext_resource path="res://Game Systems/Highlight.gd" type="Script" id=19]
+[ext_resource path="res://Assets/Sprites/Sprite-AlienSlime.png" type="Texture" id=20]
+[ext_resource path="res://Game Systems/TutorialSprite.gd" type="Script" id=21]
+[ext_resource path="res://Game Systems/Tutorial.gd" type="Script" id=22]
+[ext_resource path="res://Animations/show_nav_bar.tres" type="Animation" id=23]
 
 [sub_resource type="DynamicFont" id=18]
 font_data = ExtResource( 12 )
@@ -114,6 +118,97 @@ shader_param/pattern = 0
 shader_param/inside = false
 shader_param/add_margins = true
 
+[sub_resource type="Animation" id=24]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/HBoxContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 30 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 160, 0 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "open_nav_bar_2"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 160, 0 ), Vector2( 64, 0 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "Run_Down"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 32, 32 ), Rect2( 0, 32, 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "Run_Side"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 32, 0, 32, 32 ), Rect2( 32, 32, 32, 32 ) ]
+}
+
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
@@ -163,6 +258,30 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 184, 104 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Tutorial/ColorRect:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Tutorial/Sprite:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 200, -16 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -220,28 +339,102 @@ tracks/1/keys = {
 "values": [ Vector2( 184, 104 ), Vector2( 184, 88 ), Vector2( 184, 80 ) ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "show_nav_bar"
+[sub_resource type="Animation" id=20]
+resource_name = "play_tutorial"
+length = 10.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("BlockOut/CustomerArea/Navbar:modulate")
+tracks/0/path = NodePath("Tutorial/ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("BlockOut/CustomerArea/Navbar:rect_position")
+tracks/1/type = "method"
+tracks/1/path = NodePath("Tutorial/Sprite")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 3, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_run_down"
+}, {
+"args": [  ],
+"method": "play_run_side"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Tutorial/Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2, 3, 3.4, 3.5, 3.6, 4.2, 4.5, 4.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 200, -16 ), Vector2( 200, -16 ), Vector2( 200, 80 ), Vector2( 200, 80 ), Vector2( 200, 64 ), Vector2( 200, 80 ), Vector2( 200, 80 ), Vector2( 200, 120 ), Vector2( 152, 120 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Tutorial")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 4, 6.5, 7.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "start_initial_dialogue"
+}, {
+"args": [  ],
+"method": "start_nav_bar_intro"
+}, {
+"args": [  ],
+"method": "start_order_list_intro"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Tutorial/Sprite")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+tracks/5/type = "animation"
+tracks/5/path = NodePath("BlockOut/CustomerArea/Navbar/AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": PoolStringArray( "open_nav_bar_2" ),
+"times": PoolRealArray( 5.8 )
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "show_nav_bar_2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("BlockOut/CustomerArea/Navbar:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 160, 0 ), Vector2( 64, 0 ) ]
@@ -284,7 +477,6 @@ texture = ExtResource( 15 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="BlockOut/PlayerArea"]
 position = Vector2( 108, 116 )
 frames = SubResource( 11 )
-frame = 1
 playing = true
 
 [node name="CustomerArea" type="TextureRect" parent="BlockOut"]
@@ -364,12 +556,41 @@ margin_right = 18.0
 margin_bottom = 170.0
 texture_normal = ExtResource( 10 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BlockOut/CustomerArea/Navbar"]
+anims/RESET = SubResource( 24 )
+anims/open_nav_bar_2 = SubResource( 26 )
+
+[node name="Tutorial" type="Node2D" parent="."]
+script = ExtResource( 22 )
+recipe_list = NodePath("../BlockOut/CustomerArea/Navbar/MarginContainer/HBoxContainer/VBoxContainer")
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial"]
+margin_right = 320.0
+margin_bottom = 180.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
+[node name="Sprite" type="Sprite" parent="Tutorial"]
+position = Vector2( 200, -16 )
+texture = ExtResource( 20 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+script = ExtResource( 21 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial/Sprite"]
+anims/RESET = SubResource( 22 )
+anims/Run_Down = SubResource( 21 )
+anims/Run_Side = SubResource( 23 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
 anims/RESET = SubResource( 2 )
 anims/close_nav_bar = SubResource( 3 )
 anims/display_score = SubResource( 10 )
-anims/show_nav_bar = SubResource( 1 )
+anims/play_tutorial = SubResource( 20 )
+anims/show_nav_bar = ExtResource( 23 )
+anims/show_nav_bar_2 = SubResource( 25 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 20.0

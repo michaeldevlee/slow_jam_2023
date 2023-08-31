@@ -450,6 +450,7 @@ points = PoolVector2Array( 32, 96, 0, 96, 0, 0, 32, 0 )
 [sub_resource type="Environment" id=4]
 
 [node name="ScavengeSystem" type="Node2D"]
+visible = false
 position = Vector2( 2400, -540 )
 script = ExtResource( 1 )
 

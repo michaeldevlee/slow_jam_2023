@@ -11,7 +11,9 @@ onready var customer_timer = get_node("Timer")
 onready var customer_spawn_point = get_node("BlockOut/CustomerArea/Customer Start Point")
 onready var customer_area = get_node("BlockOut/CustomerArea/Customers")
 onready var score_display = get_node("Label")
+onready var tutorial = get_node("Tutorial")
 
+var tutorial_mode : bool = true
 
 var recipe_scene = preload("res://Game Systems/Recipe.tscn")
 var customer_scene = preload("res://Game Systems/Customer.tscn")
@@ -20,21 +22,40 @@ var max_order_count = 3
 var order_count = 0
 
 func init():
-	customer_timer.wait_time = 10
-	customer_timer.start()
+	if !tutorial_mode:
+		customer_timer.wait_time = 10
+		customer_timer.start()
+		
+	else:
+		anim_plyer.play("play_tutorial")
 	AudioEngine.playBG(AudioEngine.cooking_music)
 	
-
 func _ready():
 	navbar.navbar_list.connect("child_entered_tree", self, "connect_recipe")
 	open_ui_button.connect("button_up", self, "open_navbar")
 	navbar.connect("navbar_exited", self, "close_navbar")
 	InteractEventBus.connect("mini_game_ended", self, "process_mini_game")
+	InteractEventBus.connect("tutorial_over", self, "stop_tutorial")
 	customer_timer.connect("timeout", self, "spawn_customer")
+	DialogueManager.connect("dialogue_finished", self, "unpause_anim_player")
+	DialogueManager.connect("dialogue_started", self, "pause_anim_player")
 	init()
 	
 	if customer_arrival_point.action == "SIGNAL":
 		customer_arrival_point.connect("customer_arrived", self, "recipe_init")
+
+func pause_anim_player():
+	anim_plyer.stop(false)
+	
+func unpause_anim_player(event):
+	anim_plyer.play()
+		
+func stop_tutorial():
+	if tutorial_mode:
+		print('stop tutorial')
+		tutorial_mode = false
+		tutorial.queue_free()
+		InteractEventBus.emit_signal("skip_initiated")
 
 func recipe_init(customer_action):
 	if customer_action.order is Recipe_Order and order_count < max_order_count:
@@ -99,7 +120,8 @@ func cleanup():
 	navbar.cleanup_navbar()
 	modal.exit()
 	reset_customers()
-	
+
+
 func _process(delta):
 	if Input.is_action_just_pressed("toggle_navbar"):
 		if open_ui_button.visible == true:
@@ -108,3 +130,7 @@ func _process(delta):
 			close_navbar()	
 	
 	
+
+
+func open_nav_bar_tutorial():
+	pass
