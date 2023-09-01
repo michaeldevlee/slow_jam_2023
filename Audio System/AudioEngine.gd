@@ -31,12 +31,12 @@ var disgruntled_customer = preload("res://Audio/Bad_Service.wav")
 func _ready():
 	pass # Replace with function body.
 
-func playSFX(stream : AudioStream, volume : int = -10):
+func playSFX(stream : AudioStream, volume : int = -2):
 	sfx_player.stream = stream
 	sfx_player.volume_db = volume
 	sfx_player.play()
 
-func playBG(stream : AudioStream, volume : int = -5):
+func playBG(stream : AudioStream, volume : int = -10):
 	music_player.stream = stream
 	sfx_player.volume_db = volume	
 	music_player.play()

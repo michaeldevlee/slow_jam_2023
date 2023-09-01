@@ -27,6 +27,7 @@ func _ready():
 
 func getMad():
 	set_modulate(Color(1,0,0,1))
+	AudioEngine.playSFX(AudioEngine.disgruntled_customer)
 
 func checkIfAnyoneInFront():
 		if cast.get_collider():
