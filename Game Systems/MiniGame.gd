@@ -15,6 +15,10 @@ func notify_mini_game_ended():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	queue_free()
 
+func destroy():
+	_timer.stop()
+	queue_free()
+
 func set_reward_type(type):
 	match type:
 		"basic":

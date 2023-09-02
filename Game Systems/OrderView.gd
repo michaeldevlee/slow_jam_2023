@@ -70,7 +70,7 @@ func initiate_mini_game_mode():
 		var submitted_ingredient_count = 0
 		for icon in ingredient_icon.get_children():
 			if Inventory.inventory.has(icon.ingredient):
-				Inventory.inventory[icon.ingredient] -= icon.modal_inv
+				Inventory.remove(icon.ingredient, icon.modal_inv)
 				submitted_ingredient_count += icon.modal_inv
 		
 		if mini_game_screen is MiniGameScreen:
@@ -86,3 +86,4 @@ func exit():
 	visible = false
 	can_create_dish = true
 	curr_recipe = null
+	InteractEventBus.emit_signal("order_view_closed")

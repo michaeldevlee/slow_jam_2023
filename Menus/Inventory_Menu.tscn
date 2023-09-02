@@ -1,172 +1,127 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://test_environment_MIKE/Test Assets/Inventory_UI_Background_test.png" type="Texture" id=1]
 [ext_resource path="res://test_environment_MIKE/Test Assets/Inventory_UI_close_button_test.png" type="Texture" id=2]
 [ext_resource path="res://Inventory System/Inventory Slot.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Menus/Inventory_Menu.gd" type="Script" id=4]
 
+[sub_resource type="Animation" id=3]
+resource_name = "Close_Inv"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Inventory_Container:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_close_inv"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Inventory_Container:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Open_Inv"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Inventory_Container:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_open_inv"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Inventory_Container:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Inventory_Container:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Inventory_Container:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
 [node name="Inventory_Menu" type="CanvasLayer"]
 script = ExtResource( 4 )
 close_button_path = NodePath("Inventory_Container/Root/HBoxContainer/Background/Inner/Close_Button")
 
-[node name="Inventory Template" type="Control" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="Inventory Template"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -66.0
-margin_top = -78.0
-margin_right = 66.0
-margin_bottom = 78.0
-
-[node name="ColorRect2" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 32.0
-margin_bottom = 32.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect19" type="ColorRect" parent="Inventory Template/ColorRect/ColorRect2"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -11.0
-margin_top = -11.0
-margin_right = 11.0
-margin_bottom = 11.0
-color = Color( 0.262745, 0.117647, 0.439216, 1 )
-
-[node name="ColorRect6" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 4.0
-margin_top = 36.0
-margin_right = 32.0
-margin_bottom = 64.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect3" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 36.0
-margin_top = 4.0
-margin_right = 64.0
-margin_bottom = 32.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect7" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 36.0
-margin_top = 36.0
-margin_right = 64.0
-margin_bottom = 64.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect4" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 68.0
-margin_top = 4.0
-margin_right = 96.0
-margin_bottom = 32.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect8" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 68.0
-margin_top = 36.0
-margin_right = 96.0
-margin_bottom = 64.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect5" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 100.0
-margin_top = 4.0
-margin_right = 128.0
-margin_bottom = 32.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect9" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 100.0
-margin_top = 36.0
-margin_right = 128.0
-margin_bottom = 64.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect10" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 4.0
-margin_top = 68.0
-margin_right = 32.0
-margin_bottom = 96.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect11" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 4.0
-margin_top = 100.0
-margin_right = 32.0
-margin_bottom = 128.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect12" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 36.0
-margin_top = 68.0
-margin_right = 64.0
-margin_bottom = 96.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect13" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 36.0
-margin_top = 100.0
-margin_right = 64.0
-margin_bottom = 128.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect14" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 68.0
-margin_top = 68.0
-margin_right = 96.0
-margin_bottom = 96.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect15" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 68.0
-margin_top = 100.0
-margin_right = 96.0
-margin_bottom = 128.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect16" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 100.0
-margin_top = 68.0
-margin_right = 128.0
-margin_bottom = 96.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect17" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 128.0
-margin_bottom = 128.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="ColorRect18" type="ColorRect" parent="Inventory Template/ColorRect"]
-margin_left = 52.0
-margin_top = 136.0
-margin_right = 80.0
-margin_bottom = 148.0
-color = Color( 0.572549, 0.572549, 0.572549, 1 )
-
-[node name="Label" type="Label" parent="Inventory Template/ColorRect/ColorRect18"]
-anchor_top = 0.5
-anchor_right = 0.518
-anchor_bottom = 0.5
-margin_left = 6.0
-margin_top = -2.0
-margin_right = 25.496
-margin_bottom = 12.0
-rect_scale = Vector2( 0.5, 0.5 )
-text = "close"
-
 [node name="Inventory_Container" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -313,3 +268,8 @@ margin_right = 80.0
 margin_bottom = 148.0
 size_flags_horizontal = 4
 texture_normal = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close_Inv = SubResource( 3 )
+anims/Open_Inv = SubResource( 1 )
+anims/RESET = SubResource( 2 )

@@ -34,9 +34,9 @@ func _unhandled_input(event):
 		circle.disabled = false
 		circle.shape.radius = 1
 		circle_sprite.scale = Vector2(1,1)
-		circle_sprite.global_position = get_global_mouse_position()
-		circle.global_position = get_global_mouse_position()
-		original_mos_pos = get_global_mouse_position()
+		circle_sprite.global_position = get_viewport().get_mouse_position()
+		circle.global_position = get_viewport().get_mouse_position()
+		original_mos_pos = get_viewport().get_mouse_position()
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	elif Input.is_action_just_released("mouse_interact"):
 		drawing = false

@@ -12,6 +12,7 @@ onready var customer_spawn_point = get_node("BlockOut/CustomerArea/Customer Star
 onready var customer_area = get_node("BlockOut/CustomerArea/Customers")
 onready var score_display = get_node("Label")
 onready var tutorial = get_node("Tutorial")
+onready var modal_background = get_node("ColorRect")
 
 var tutorial_mode : bool = true
 
@@ -28,14 +29,16 @@ func init():
 		
 	else:
 		anim_plyer.play("play_tutorial")
-	AudioEngine.playBG(AudioEngine.cooking_music)
+	AudioEngine.play_random_cooking_song()
 	
 func _ready():
+	modal_background.visible = false
 	navbar.navbar_list.connect("child_entered_tree", self, "connect_recipe")
 	open_ui_button.connect("button_up", self, "open_navbar")
 	navbar.connect("navbar_exited", self, "close_navbar")
 	InteractEventBus.connect("mini_game_ended", self, "process_mini_game")
 	InteractEventBus.connect("tutorial_over", self, "stop_tutorial")
+	InteractEventBus.connect("order_view_closed", self , "remove_modal_background")
 	customer_timer.connect("timeout", self, "spawn_customer")
 	DialogueManager.connect("dialogue_finished", self, "unpause_anim_player")
 	DialogueManager.connect("dialogue_started", self, "pause_anim_player")
@@ -52,21 +55,18 @@ func unpause_anim_player(event):
 		
 func stop_tutorial():
 	if tutorial_mode:
-		print('stop tutorial')
 		tutorial_mode = false
+		GameState.tutorial_mode = false
 		tutorial.queue_free()
 		InteractEventBus.emit_signal("skip_initiated")
 
 func recipe_init(customer_action):
 	if customer_action.order is Recipe_Order and order_count < max_order_count:
 		order_count += 1
-		print('giving orders')
 		var recipe_instance : Recipe = recipe_scene.instance()
 		recipe_instance.order = customer_action.order
 		recipe_instance.set_customer(customer_action)
 		navbar.order_init(recipe_instance)
-		print('the customer is: ')
-		print(customer_action)
 		customer_action.changeDirectionTo(Vector2(0, -16), "UP")
 		customer_action.busy = false
 		
@@ -75,6 +75,7 @@ func connect_recipe(recipe : Recipe):
 	recipe.connect("recipe_selected", self, "view_recipe")
 
 func view_recipe(recipe : Recipe):
+	modal_background.visible = true
 	modal.load_order(recipe)
 	var ingredients = recipe.order.required_ingredients
 	recipe_view.visible = true
@@ -88,8 +89,10 @@ func open_navbar():
 func close_navbar():
 	anim_plyer.play("close_nav_bar")
 	open_ui_button.visible = true
+	modal_background.visible = false
 
 func process_mini_game(finished_recipe : Recipe):
+	modal_background.visible = false
 	var recipe_resource = finished_recipe.order
 	finished_recipe.customer.queue_free()
 	modal.exit()
@@ -114,23 +117,27 @@ func reset_customers():
 		customer.queue_free()
 	
 	customer_timer.stop()
+
+func remove_modal_background():
+	modal_background.visible = false
+
 func cleanup():
 	close_navbar()
 	order_count = 0
 	navbar.cleanup_navbar()
 	modal.exit()
 	reset_customers()
+	modal_background.visible = false
 
 
 func _process(delta):
 	if Input.is_action_just_pressed("toggle_navbar"):
-		if open_ui_button.visible == true:
-			open_navbar()
-		else:
-			close_navbar()	
+		if !GameState.tutorial_mode:
+			if open_ui_button.visible == true:
+				open_navbar()
+			else:
+				close_navbar()	
 	
-	
-
 
 func open_nav_bar_tutorial():
 	pass

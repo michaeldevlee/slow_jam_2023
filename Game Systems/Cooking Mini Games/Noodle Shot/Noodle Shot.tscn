@@ -11,8 +11,6 @@ extents = Vector2( 12, 12 )
 extents = Vector2( 10, 25 )
 
 [node name="Noodle Shot" instance=ExtResource( 1 )]
-margin_right = -140.0
-margin_bottom = -76.0
 script = ExtResource( 2 )
 compatible_condiment_1 = "Slimey Broth Reduction"
 

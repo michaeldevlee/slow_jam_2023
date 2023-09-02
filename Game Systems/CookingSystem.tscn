@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Game Systems/CookingSystem.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://Game Systems/TutorialSprite.gd" type="Script" id=21]
 [ext_resource path="res://Game Systems/Tutorial.gd" type="Script" id=22]
 [ext_resource path="res://Animations/show_nav_bar.tres" type="Animation" id=23]
+[ext_resource path="res://Game Systems/Cooking Mini Games/Noodle Shot/Noodle Shot.tscn" type="PackedScene" id=24]
 
 [sub_resource type="DynamicFont" id=18]
 font_data = ExtResource( 12 )
@@ -477,6 +478,7 @@ texture = ExtResource( 15 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="BlockOut/PlayerArea"]
 position = Vector2( 108, 116 )
 frames = SubResource( 11 )
+frame = 1
 playing = true
 
 [node name="CustomerArea" type="TextureRect" parent="BlockOut"]
@@ -611,8 +613,15 @@ text = "Big Reward!
 align = 1
 valign = 1
 
-[node name="UI" type="Control" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 visible = false
+modulate = Color( 1, 1, 1, 0.352941 )
+margin_right = 320.0
+margin_bottom = 184.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
+[node name="UI" type="Control" parent="."]
 margin_right = 320.0
 margin_bottom = 180.0
 mouse_filter = 2
@@ -763,7 +772,12 @@ script = ExtResource( 9 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-alignment = 1
+
+[node name="Noodle Shot" parent="UI/PopUpBackground/MiniGameScreen/MiniGameContainer" instance=ExtResource( 24 )]
+margin_right = 0.0
+
+[node name="ColorRect" parent="UI/PopUpBackground/MiniGameScreen/MiniGameContainer/Noodle Shot" index="0"]
+margin_bottom = -144.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -794,3 +808,5 @@ text = "- Scavenge Mode -
 autowrap = true
 
 [connection signal="mouse_entered" from="BlockOut/CustomerArea/Slide Out Button" to="BlockOut/CustomerArea/Slide Out Button" method="_on_Slide_Out_Button_mouse_entered"]
+
+[editable path="UI/PopUpBackground/MiniGameScreen/MiniGameContainer/Noodle Shot"]

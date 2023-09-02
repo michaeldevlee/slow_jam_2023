@@ -5,6 +5,8 @@ onready var music_player = get_node("BGMusicPlayer")
 onready var minigame_music_player = get_node("MiniGameMusicPlayer")
 
 var cooking_music = preload("res://Audio/Cooking music shop music.wav")
+var cooking_music2 = preload("res://Audio/Noodle Pull Correct.wav")
+var cooking_music3 = preload("res://Audio/Seaweed Wrap.wav")
 var scavenging_music = preload("res://Audio/Nightime Sneak.wav")
 var start_menu_music = preload("res://Audio/Cooking Theme.mp3")
 var ending_music = preload("res://Audio/funky_space_time.wav")
@@ -27,9 +29,20 @@ var new_item = preload("res://Audio/New_Item.wav")
 var just_item = preload("res://Audio/Just_Item.wav")
 var disgruntled_customer = preload("res://Audio/Bad_Service.wav")
 
+var rng = RandomNumberGenerator.new()
+var indexes = [0, 1, 2]
+
+var cooking_songs = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	rng.randomize()
+	cooking_songs =[
+	cooking_music,
+	cooking_music2,
+	cooking_music3
+]
+	music_player.connect("finished", self, "play_random_cooking_song")
 
 func playSFX(stream : AudioStream, volume : int = -2):
 	sfx_player.stream = stream
@@ -50,3 +63,19 @@ func stop_all():
 	sfx_player.stop()
 	music_player.stop()
 	minigame_music_player.stop()
+
+
+func play_random_cooking_song():
+	if GameState.current_mode == "cooking":
+		var rand_int = rng.randi_range(0, cooking_songs.size()-1)
+		playBG(cooking_songs[rand_int])
+		cooking_songs.pop_at(rand_int)
+		print(rand_int)
+		print(cooking_songs)
+		if cooking_songs.size() <= 0:
+			cooking_songs = [cooking_music, cooking_music2, cooking_music3]
+		print('called')
+
+func _process(delta):
+	if Input.is_action_just_pressed("ui_down"):
+		play_random_cooking_song()

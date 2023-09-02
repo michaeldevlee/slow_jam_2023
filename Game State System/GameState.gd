@@ -13,6 +13,9 @@ export var available_enhancers = []
 var unlocked_enhancers = []
 
 
+var current_mode = "cooking"
+var tutorial_mode = true
+
 func _ready():
 	Inventory.connect("added_ingredient", self, "update_inventory_state")
 

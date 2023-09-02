@@ -14,6 +14,10 @@ func _ready():
 	InteractEventBus.connect("switch_mode_initiated", self, "enter_next_mode")
 	InteractEventBus.connect("skip_initiated", self, "enter_next_mode")
 	InteractEventBus.connect("check_if_game_over", self, "check_if_game_over")
+	InteractEventBus.connect("tutorial_over", self, "start_timer")
+
+func start_timer():
+	timer.start()
 
 func check_if_game_over():
 	if Inventory.money >= cash_to_win:

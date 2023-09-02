@@ -43,6 +43,8 @@ func getScene(scene):
 		}
 	
 		InteractEventBus.emit_signal("pop_up_event_started", event)
+		GameState.current_mode = "cooking"
+		get_tree().call_group("MiniGame", "destroy")
 		scavengeSystem.cleanup()
 		cookingSystem.init()
 	else:
@@ -54,6 +56,8 @@ func getScene(scene):
 		InteractEventBus.emit_signal("pop_up_event_started", event)
 		scavengeSystem.init()
 		cookingSystem.cleanup()
+		GameState.current_mode = "scavenging"
+		
 	
 
 func _process(delta):
